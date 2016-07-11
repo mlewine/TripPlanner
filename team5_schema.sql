@@ -21,6 +21,7 @@ CREATE TABLE if not exists credit_card (
   cvv INT NOT NULL, 
   address_id int NOT NULL,
   foreign key(address_id) references address(address_id)
+  ON DELETE SET NULL
 );
 
 drop table if exists user;
@@ -31,7 +32,6 @@ CREATE TABLE if not exists user (
   isadmin varchar(16),
   address_id int,
   foreign key(address_id) references address(address_id)
-	ON UPDATE CASCADE
 	ON DELETE SET NULL
 );
 
@@ -61,7 +61,6 @@ create table if not exists attraction (
   timeslotendtime datetime,
   reservationnumber int unique,
   foreign key(address_id) references address(address_id)
-	ON UPDATE CASCADE
 	ON DELETE SET NULL
 );
 
@@ -75,6 +74,8 @@ create table review (
   attraction_id int not null,
   foreign key (author_email) references user(user_email),
   foreign key (attraction_id) references attraction(attraction_id)
+  ON UPDATE CASCADE
+  ON DELETE SET NULL
 );
 
 drop table if exists activity;
@@ -89,6 +90,8 @@ create table activity (
   foreign key (reservationnumber) references attraction (reservationnumber),
   foreign key (attraction_id) references attraction (attraction_id),
   foreign key (trip_id) references trip (trip_id)
+  ON UPDATE CASCADE
+  ON DELETE SET NULL
 );
 
 DROP TABLE if exists public_transportation;
@@ -100,6 +103,8 @@ CREATE TABLE if not exists public_transportation (
   foreign key (address_id) references address(address_id),
   foreign key (user_email) references user(user_email),
   foreign key (attraction_id) references attraction(attraction_id)
+  ON UPDATE CASCADE
+  ON DELETE SET NULL
 );
 
 drop table if exists attraction_hours;
@@ -109,4 +114,5 @@ create table if not exists attraction_hours (
   closing_time time,
   day_of_the_week varchar(16) primary key not null,
   foreign key (attraction_id) references attraction (attraction_id)
+  ON DELETE SET NULL
 );
