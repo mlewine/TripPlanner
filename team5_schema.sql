@@ -102,6 +102,7 @@ CREATE TABLE if not exists public_transportation (
   foreign key (attraction_id) references attraction(attraction_id)
 );
 
+drop table if exists attraction_hours;
 create table if not exists attraction_hours (
   attraction_id int not null,
   opening_time time,
