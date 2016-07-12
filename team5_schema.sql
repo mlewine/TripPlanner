@@ -109,10 +109,11 @@ CREATE TABLE if not exists public_transportation (
 
 drop table if exists attraction_hours;
 create table if not exists attraction_hours (
+  hour_id int primary key not null auto_increment,
   attraction_id int,
   opening_time time,
   closing_time time,
-  day_of_the_week varchar(64) primary key not null,
+  day_of_the_week varchar(64) not null,
   foreign key (attraction_id) references attraction (attraction_id)
   ON DELETE SET NULL
 );
