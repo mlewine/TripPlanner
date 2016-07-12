@@ -1,3 +1,9 @@
+-- Matthew Lewine
+-- Lois Johnson
+-- Sidd Meka
+-- Jay Bland
+-- Miwa Katamura
+
 drop database if exists team5_schema;
 create database team5_schema;
 use team5_schema;
@@ -21,7 +27,7 @@ CREATE TABLE if not exists credit_card (
   cvv varchar(3) NOT NULL, 
   address_id int,
   foreign key(address_id) references address(address_id)
-  ON DELETE SET NULL
+    ON DELETE SET NULL
 );
 
 drop table if exists user;
@@ -32,7 +38,7 @@ CREATE TABLE if not exists user (
   isadmin varchar(64),
   address_id int,
   foreign key(address_id) references address(address_id)
-	ON DELETE SET NULL
+	  ON DELETE SET NULL
 );
 
 drop table if exists trip;
@@ -44,8 +50,8 @@ create table if not exists trip (
   user_email varchar(64),
   activity_id int not null,
   foreign key (user_email) references user(user_email)
-	ON UPDATE CASCADE
-	ON DELETE SET NULL
+    ON UPDATE CASCADE
+    ON DELETE SET NULL
 );
 
 drop table if exists attraction;
@@ -61,7 +67,7 @@ create table if not exists attraction (
   timeslotendtime datetime,
   reservationnumber int unique,
   foreign key(address_id) references address(address_id)
-	ON DELETE SET NULL
+	  ON DELETE SET NULL
 );
 
 drop table if exists review;
@@ -74,8 +80,8 @@ create table review (
   attraction_id int ,
   foreign key (author_email) references user(user_email),
   foreign key (attraction_id) references attraction(attraction_id)
-  ON UPDATE CASCADE
-  ON DELETE SET NULL
+    ON UPDATE CASCADE
+    ON DELETE SET NULL
 );
 
 drop table if exists activity;
@@ -90,8 +96,7 @@ create table activity (
   foreign key (reservationnumber) references attraction (reservationnumber),
   foreign key (attraction_id) references attraction (attraction_id),
   foreign key (trip_id) references trip (trip_id)
-  ON UPDATE CASCADE
-  ON DELETE SET NULL
+    ON DELETE SET NULL
 );
 
 DROP TABLE if exists public_transportation;
@@ -103,8 +108,8 @@ CREATE TABLE if not exists public_transportation (
   foreign key (address_id) references address(address_id),
   foreign key (user_email) references user(user_email),
   foreign key (attraction_id) references attraction(attraction_id)
-  ON UPDATE CASCADE
-  ON DELETE SET NULL
+    ON UPDATE CASCADE
+    ON DELETE SET NULL
 );
 
 drop table if exists attraction_hours;
@@ -115,5 +120,5 @@ create table if not exists attraction_hours (
   closing_time time,
   day_of_the_week varchar(64) not null,
   foreign key (attraction_id) references attraction (attraction_id)
-  ON DELETE SET NULL
+    ON DELETE SET NULL
 );
