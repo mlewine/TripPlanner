@@ -18,7 +18,7 @@ CREATE TABLE if not exists credit_card (
   name varchar(16) not null,
   ccnumber varchar(16) primary key,
   card_expdate varchar(5) NOT NULL,
-  cvv INT NOT NULL, 
+  cvv varchar(3) NOT NULL, 
   address_id int,
   foreign key(address_id) references address(address_id)
   ON DELETE SET NULL
@@ -68,7 +68,7 @@ drop table if exists review;
 create table review (	
   review_id int primary key not null auto_increment,		
   body varchar(128),
-  title varchar(16) not null,
+  title varchar(64) not null,
   date date not null,
   author_email varchar(64),
   attraction_id int ,
