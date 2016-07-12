@@ -7,17 +7,17 @@ CREATE TABLE address(
   address_id int primary key auto_increment,
   street_num int not null,
   street varchar(64) not null,
-  state varchar(32),
-  city varchar(32) not null,
-  country varchar(32) not null,
-  zip varchar(16) not null
+  state varchar(64),
+  city varchar(64) not null,
+  country varchar(64) not null,
+  zip varchar(64) not null
 );
 
 DROP TABLE if exists credit_card;
 CREATE TABLE if not exists credit_card (
-  name varchar(16) not null,
-  ccnumber varchar(16) primary key,
-  card_expdate varchar(5) NOT NULL,
+  name varchar(64) not null,
+  ccnumber varchar(64) primary key,
+  card_expdate date NOT NULL,
   cvv varchar(3) NOT NULL, 
   address_id int,
   foreign key(address_id) references address(address_id)
@@ -26,10 +26,10 @@ CREATE TABLE if not exists credit_card (
 
 drop table if exists user;
 CREATE TABLE if not exists user (
-  name varchar(32) not null,
+  name varchar(64) not null,
   user_email varchar(64) primary key,
-  suspended varchar(16),
-  isadmin varchar(16),
+  suspended varchar(64),
+  isadmin varchar(64),
   address_id int,
   foreign key(address_id) references address(address_id)
 	ON DELETE SET NULL
@@ -38,7 +38,7 @@ CREATE TABLE if not exists user (
 drop table if exists trip;
 create table if not exists trip (
   trip_id int primary key not null auto_increment,
-  city varchar(16) not null,
+  city varchar(64) not null,
   startdate date not null,
   booked varchar(4) not null,
   user_email varchar(64),
@@ -51,7 +51,7 @@ create table if not exists trip (
 drop table if exists attraction;
 create table if not exists attraction (
   attraction_id int (16) primary key not null auto_increment,
-  name varchar(32) not null,
+  name varchar(64) not null,
   description varchar(128),
   address_id int,
   price float,
@@ -83,7 +83,7 @@ create table activity (
   activity_id int primary key not null auto_increment,
   attraction_id int,
   reservationnumber int,
-  name varchar(16),
+  name varchar(64),
   startdatetime datetime not null,
   enddatetime datetime not null,
   trip_id int,
@@ -96,7 +96,7 @@ create table activity (
 
 DROP TABLE if exists public_transportation;
 CREATE TABLE if not exists public_transportation (
-  name varchar(16) primary key unique,
+  name varchar(64) primary key unique,
   attraction_id int, 
   user_email varchar(64) unique,
   address_id int,
@@ -112,7 +112,7 @@ create table if not exists attraction_hours (
   attraction_id int,
   opening_time time,
   closing_time time,
-  day_of_the_week varchar(16) primary key not null,
+  day_of_the_week varchar(64) primary key not null,
   foreign key (attraction_id) references attraction (attraction_id)
   ON DELETE SET NULL
 );
