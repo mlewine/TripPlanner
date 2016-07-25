@@ -4,9 +4,9 @@
 -- Jay Bland
 -- Miwa Katamura
 
-drop database if exists team5_schema;
-create database team5_schema;
-use team5_schema;
+drop database if exists team5-schema;
+create database team5-schema;
+use team5-schema;
 
 DROP TABLE if exists address;
 CREATE TABLE address(
