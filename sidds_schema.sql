@@ -78,9 +78,9 @@ create table activity (
   activity_id int primary key not null auto_increment,
   attraction_id int,
   name varchar(32),
+  startdatetime datetime,
+  enddatetime datetime,
   trip_id int,
-  start datetime;
-  start endtime;
   foreign key (attraction_id) references attraction (attraction_id),
   foreign key (trip_id) references trip (trip_id)
   ON UPDATE CASCADE
