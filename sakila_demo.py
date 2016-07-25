@@ -18,10 +18,15 @@ def register(request):
     form = RegistrationForm(request.POST)
     if request.method == 'POST' and form.validate():
         user = User()
-        user.username = form.username.data
+        user.name = form.name.data
         user.email = form.email.data
         user.save()
         redirect('register')
+##        cursor = db.cursor()
+##        cursor.execute("select suspended, isadmin, address_id" +
+##                       "from customer where email = %s",
+##                       (form.email.data,))
+##        rows = cursor.fetchall()
     return render_response('register.html', form=form)
 
 @app.route('/', methods=['GET', 'POST'])
