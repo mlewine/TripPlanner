@@ -30,7 +30,7 @@ Insert into user values('Harry Potter', 'harrypotter731@hogwarts.edu', NULL, NUL
 Insert into trip values(1,'Metz', '2016-07-07', 'Yes', 'walt.white@notarealemail.com');
 Insert into trip values(2,'Paris', '2016-07-12', 'Yes', 'homer_simpson234@thisisfake.com');
 Insert into trip values(3,'Rome', '2016-05-24', 'Yes', 'harrypotter731@hogwarts.edu');
-Insert into trip values(4,'Paris', '2016-07-30', 'Yes', 'l.knope@notarealemail.com')
+Insert into trip values(4,'Paris', '2016-07-30', 'Yes', 'l.knope@notarealemail.com');
 
 
 Insert into attraction values(1,'Metz Cathedral', 'The Metz Cathedral is a Roman Catholic Cathedral located in the heart of Metz, France. The stained glass windows include works by Gothic and Renaissance master glass makers, such as Hermann von Munster and Theobold of Lixheim', 1, 4.50, NULL);
@@ -40,7 +40,7 @@ Insert into attraction values(4,'Eiffel Tower', 'The Eiffel Tower is a wrought i
 Insert into attraction values(5,'Louvre', "The Louvre or the Louvre Museum is the world's largest museum and a historic monument in Paris, France. A central landmark of the city, it is located on the Right Bank of the Seine in the 1st arrondissement.", 5, 15.00,NULL);
 Insert into attraction values(6,'Notre Dame', 'Notre Dame is a medeival catholic, and is considered to be one of the best examples of Gothic architecture in the world. Making the climb to the top of the 300 foot towers gives one of the best views in the city.', 6, 8.50,NULL);
 Insert into attraction values(7,'58 Tour Eiffel', 'Dine in the heart of Parisian nightlife...When the sun goes down, 58 Tour Eiffel takes on a new dimension. You will be greeted by a hostess who will lead you to your table where the atmosphere of luxury will surround you', 4, 85.00,NULL);
-Insert into attraction values(8,'Brunch boat cruise', 'Step on board Paris en Scène and experience our meal prepared on board according to the best bistro traditions by our chef. The only requirement is that you get comfortable in our large leather armchairs, while admiring the view of the Seine', 7, 39.00,NULL,);
+Insert into attraction values(8,'Brunch boat cruise', 'Step on board Paris en Scène and experience our meal prepared on board according to the best bistro traditions by our chef. The only requirement is that you get comfortable in our large leather armchairs, while admiring the view of the Seine', 7, 39.00,NULL);
 Insert into attraction values(9,'Colosseum', 'The Colosseum is located just east of the Roman Forum and was built to a practical design, with its 80 arched entrances allowing easy access to 55,000 spectators', 8, 15.50,NULL);
 Insert into attraction values(10,'Pantheon', 'It is one of the best-preserved of all Ancient Roman buildings, in large part because it has been in continuous use throughout its history, and since the 7th century, the Pantheon has been used as a church dedicated to "St. Mary and the Martyrs"', 9, NULL,NULL);
 Insert into attraction values(11,'Trevi Fountain', 'The Trevi Fountain is a fountain in the Trevi district in Rome, Italy, designed by Italian architect Nicola Salvi and completed by Pietro Bracci', 10, NULL,NULL);
@@ -57,24 +57,24 @@ Insert into review values(9,'This was highly disappointing. I just saw old rubbl
 Insert into review values(10,'Surprisingly NOT the parthenon.', 'Pantheon', '2016-07-19', 'harrypotter731@hogwarts.edu',10);
 Insert into review values(11,'Finally lived my lifelong Lizzie McGuire dreams! It was incredible!', 'Trevi Fountain', '2016-07-04', 'harrypotter731@hogwarts.edu',11);
 
-Insert into activity values(1,1,NULL,'Visit Church', '2016-07-07 14:45', '2016-07-07 15:15', 1);
-Insert into activity values(2,2,NULL,'Visit Art Exhibitions', '2016-07-07 12:45', '2016-07-07 14:15', 1);
-Insert into activity values(3,3,NULL,'Visit Art Exhibitions', '2016-07-07 9:30', '2016-07-07 12:00', 1);
-Insert into activity values(4,4,NULL,'Have a picnic', '2016-07-12 17:30', '2016-07-12 19:00', 2);
-Insert into activity values(5,5,NULL,'Visit Art Exhibitions', '2016-07-12 10:30', '2016-07-12 13:00', 2);
-Insert into activity values(6,6,NULL,'Climb the tower', '2016-07-12 14:30', '2016-07-12 15:30', 2);
-Insert into activity values(7,7,1,'Eat Dinner', '2016-07-12 18:15', '2016-07-12 20:30', 2);
-Insert into activity values(8,8,2,'Eat Brunch on the Seine River', '2016-07-12 8:30', '2016-07-12 10:00', 2);
-Insert into activity values(9,9,NULL,'Visit Colosseum', '2016-05-24 15:30', '2016-05-24 17:00', 3);
-Insert into activity values(10,10,NULL,'Visit Pantheon', '2016-05-24 12:30', '2016-05-24 13:00', 3);
-Insert into activity values(11,11,NULL,'Visit Trevi Fountain', '2016-05-24 17:45', '2016-05-24 19:00', 3);
-Insert into activity values(12,4, NULL, 'Climb Eiffel Tower', '2016-07-30 17:30','2016-07-30 19:00',4);
-Insert into activity values(13,8,1, 'Eat Dinner', '2016-07-30 19:15','2016-07-30 20:45',4);
-Insert into activity values(14,6,NULL, 'Climb the tower', '2016-07-30 13:15','2016-07-30 14:45',4);
+Insert into activity values(1,1,'Visit Church', '2016-07-07 14:45', '2016-07-07 15:15', 1);
+Insert into activity values(2,2,'Visit Art Exhibitions', '2016-07-07 12:45', '2016-07-07 14:15', 1);
+Insert into activity values(3,3,'Visit Art Exhibitions', '2016-07-07 9:30', '2016-07-07 12:00', 1);
+Insert into activity values(4,4,'Have a picnic', '2016-07-12 17:30', '2016-07-12 19:00', 2);
+Insert into activity values(5,5,'Visit Art Exhibitions', '2016-07-12 10:30', '2016-07-12 13:00', 2);
+Insert into activity values(6,6,'Climb the tower', '2016-07-12 14:30', '2016-07-12 15:30', 2);
+Insert into activity values(7,7,'Eat Dinner', '2016-07-12 18:15', '2016-07-12 20:30', 2);
+Insert into activity values(8,8,'Eat Brunch on the Seine River', '2016-07-12 8:30', '2016-07-12 10:00', 2);
+Insert into activity values(9,9,'Visit Colosseum', '2016-05-24 15:30', '2016-05-24 17:00', 3);
+Insert into activity values(10,10,'Visit Pantheon', '2016-05-24 12:30', '2016-05-24 13:00', 3);
+Insert into activity values(11,11,'Visit Trevi Fountain', '2016-05-24 17:45', '2016-05-24 19:00', 3);
+Insert into activity values(12,4, 'Climb Eiffel Tower', '2016-07-30 17:30','2016-07-30 19:00',4);
+Insert into activity values(13,8, 'Eat Dinner', '2016-07-30 19:15','2016-07-30 20:45',4);
+Insert into activity values(14,6,'Climb the tower', '2016-07-30 13:15','2016-07-30 14:45',4);
 
-Insert into reservation values(1, '18:30','19:30',7,60)
-Insert into reservation values(2, '19:30','20:30',7,60)
-Insert into reservation values(3, '10:30','11:30',8,60)
+Insert into reservations values(1, '18:30','19:30',7,60);
+Insert into reservations values(2, '19:30','20:30',7,60);
+Insert into reservations values(3, '10:30','11:30',8,60);
 
 
 -- Insert into public_transportation values ('Mettis A/B', 1, 'walt.white@notarealemail.com', 1);
