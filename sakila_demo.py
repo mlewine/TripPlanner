@@ -2,7 +2,7 @@ from collections import namedtuple
 from flask import Flask, render_template, session, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_wtf import Form
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, BooleanField, validators
 from wtforms.validators import Required
 import pymysql
 
@@ -38,11 +38,6 @@ def register(request):
         user.email = form.email.data
         user.save()
         redirect('register')
-##        cursor = db.cursor()
-##        cursor.execute("select suspended, isadmin, address_id" +
-##                       "from customer where email = %s",
-##                       (form.email.data,))
-##        rows = cursor.fetchall()
     return render_response('register.html', form=form)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -120,6 +115,6 @@ def table(table):
 if __name__ == '__main__':
     dbname = 'sakila'
     db = pymysql.connect(host='localhost',
-                         user='root', passwd='700m325a606tt', db=dbname)
+                         user='root', passwd='', db=dbname)
     app.run(debug=True)
     db.close()
