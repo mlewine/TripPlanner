@@ -14,6 +14,12 @@ class LoginForm(Form):
     email = StringField('Email address', validators=[Required()])
     submit = SubmitField('Log in')
 
+class RegistrationForm(Form):
+    email = StringField('Email address', validators=[Required()])
+    username = StringField('Username', validators=[Required()])
+    password = StringField('Password', validators=[Required()])
+    submit = SubmitField('Register')
+
 class TripForm(Form):
     pass
 
@@ -23,7 +29,7 @@ class ActivityForm(Form):
 class AttractionForm(Form):
     pass
     
-    
+@app.route('/register', methods=['GET', 'POST'])
 def register(request):
     form = RegistrationForm(request.POST)
     if request.method == 'POST' and form.validate():
