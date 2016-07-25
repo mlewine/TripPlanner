@@ -72,9 +72,9 @@ Insert into activity values(12,4, 'Climb Eiffel Tower', '2016-07-30 17:30','2016
 Insert into activity values(13,8, 'Eat Dinner', '2016-07-30 19:15','2016-07-30 20:45',4);
 Insert into activity values(14,6,'Climb the tower', '2016-07-30 13:15','2016-07-30 14:45',4);
 
-Insert into reservations values(1, '18:30','19:30',7,60);
-Insert into reservations values(2, '19:30','20:30',7,60);
-Insert into reservations values(3, '10:30','11:30',8,60);
+Insert into reservations values(1, '2016-07-30 18:30','2016-07-30 19:30',7,60);
+Insert into reservations values(2, '2016-07-30 19:30','2016-07-30 20:30',7,60);
+Insert into reservations values(3, '2016-07-30 10:30','2016-07-30 11:30',8,60);
 
 
 -- Insert into public_transportation values ('Mettis A/B', 1, 'walt.white@notarealemail.com', 1);
