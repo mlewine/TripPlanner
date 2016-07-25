@@ -14,6 +14,16 @@ class LoginForm(Form):
     email = StringField('Email address', validators=[Required()])
     submit = SubmitField('Log in')
 
+class TripForm(Form):
+    pass
+
+class ActivityForm(Form):
+    pass
+
+class AttractionForm(Form):
+    pass
+    
+    
 def register(request):
     form = RegistrationForm(request.POST)
     if request.method == 'POST' and form.validate():
@@ -69,6 +79,22 @@ def home():
 
 @app.route('/browse_db')
 def browse_db():
+    cursor = db.cursor()
+    cursor.execute("show tables")
+    tables = [field[0] for field in cursor.fetchall()[1:]]
+    cursor.close()
+    return render_template('browse_db.html', dbname=dbname, tables=tables)
+
+@app.route('/browse_db')
+def browse_attractions():
+    cursor = db.cursor()
+    cursor.execute("show tables")
+    tables = [field[0] for field in cursor.fetchall()[1:]]
+    cursor.close()
+    return render_template('browse_db.html', dbname=dbname, tables=tables)
+
+@app.route('/browse_db')
+def browse_activities():
     cursor = db.cursor()
     cursor.execute("show tables")
     tables = [field[0] for field in cursor.fetchall()[1:]]
