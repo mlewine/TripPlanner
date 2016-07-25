@@ -114,6 +114,6 @@ def table(table):
 if __name__ == '__main__':
     dbname = 'sakila'
     db = pymysql.connect(host='localhost',
-                         user='root', passwd='', db=dbname)
+                         user='root', passwd='700m325a606tt', db=dbname)
     app.run(debug=True)
     db.close()
