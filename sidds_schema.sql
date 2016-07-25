@@ -111,7 +111,7 @@ create table if not exists attraction_hours (
 );
 
 drop table if exists reservations;
-create table if not exists reservations;
+create table if not exists reservations (
   slot_id int auto_increment primary key,
   timeslotstarttime datetime,
   timeslotendtime datetime,
