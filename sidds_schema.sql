@@ -53,8 +53,7 @@ create table if not exists attraction (
   name varchar(32) not null,
   description varchar(256),
   address_id int,
-  price float,
-  start datetime, 
+  price float, 
   quantity int,
   foreign key(address_id) references address(address_id)
   ON DELETE SET NULL
@@ -80,6 +79,8 @@ create table activity (
   attraction_id int,
   name varchar(32),
   trip_id int,
+  start datetime;
+  start endtime;
   foreign key (attraction_id) references attraction (attraction_id),
   foreign key (trip_id) references trip (trip_id)
   ON UPDATE CASCADE
