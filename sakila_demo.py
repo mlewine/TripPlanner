@@ -14,6 +14,16 @@ class LoginForm(Form):
     email = StringField('Email address', validators=[Required()])
     submit = SubmitField('Log in')
 
+def register(request):
+    form = RegistrationForm(request.POST)
+    if request.method == 'POST' and form.validate():
+        user = User()
+        user.username = form.username.data
+        user.email = form.email.data
+        user.save()
+        redirect('register')
+    return render_response('register.html', form=form)
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = LoginForm()
