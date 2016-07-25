@@ -30,7 +30,7 @@ class AttractionForm(Form):
     pass
     
 @app.route('/register', methods=['GET', 'POST'])
-gitdef register(request):
+def register(request):
     form = RegistrationForm(request.POST)
     if request.method == 'POST' and form.validate():
         user = User()
