@@ -56,9 +56,6 @@ create table if not exists attraction (
   price float,
   start datetime, 
   quantity int,
-  timeslotstarttime datetime,
-  timeslotendtime datetime,
-  reservationnumber int unique,
   foreign key(address_id) references address(address_id)
   ON DELETE SET NULL
 );
@@ -81,12 +78,8 @@ drop table if exists activity;
 create table activity (
   activity_id int primary key not null auto_increment,
   attraction_id int,
-  reservationnumber int,
   name varchar(32),
-  startdatetime datetime not null,
-  enddatetime datetime not null,
   trip_id int,
-  foreign key (reservationnumber) references attraction (reservationnumber),
   foreign key (attraction_id) references attraction (attraction_id),
   foreign key (trip_id) references trip (trip_id)
   ON UPDATE CASCADE
@@ -114,6 +107,16 @@ create table if not exists attraction_hours (
   day_of_the_week varchar(16) primary key not null,
   foreign key (attraction_id) references attraction (attraction_id)
   ON DELETE SET NULL
+);
+
+drop table if exists reservations;
+create table if not exists reservations;
+  slot_id int auto_increment primary key,
+  timeslotstarttime datetime,
+  timeslotendtime datetime,
+  attraction_id int,
+  spots_remaining int,
+  foreign key attraction_id references attraction (attraction_id)
 );
 
 
