@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+-- teamN-data.sql, where N is your team number, should contain valid SQL code to insert data into your database tables for at least 3 attractions in each of 3 cities, including Metz, Paris, and one or more cities of your choosing. There should be data for each field for each row in each table, including the descriptions of the attractions (the descriptions should be correct, but don't have to be longer than two sentences). In addition, include insert statements to create a trip in Paris on Saturday, 30 July 2016 with at leat 3 activities, at least one of which requires a reservation and at least two of which requires payment (they can be the same activity).
+
+>>>>>>> 71ce498129ed61810a3a35a3ace60f811254e86e
 Use team5_schema;
 
 Insert into address values(1,NULL, "Place d'Armes", NULL, 'Metz', 'France', '57000');
