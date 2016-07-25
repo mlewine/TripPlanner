@@ -117,5 +117,5 @@ create table if not exists reservations (
   timeslotendtime datetime,
   attraction_id int,
   spots_remaining int,
-  foreign key attraction_id references attraction (attraction_id)
+  foreign key (attraction_id) references attraction (attraction_id)
 );
