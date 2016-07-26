@@ -76,8 +76,9 @@ def home():
     #                                'due_date', 'film_title'])
     # rentals = [Rental._make(row) for row in cursor.fetchall()]
     # cursor.close()
-    return render_template('home.html', rentals=rentals,
-                           customer=session['customer_name'])
+    # return render_template('home.html', rentals=rentals,
+    #                        customer=session['customer_name'])
+    return render_template('home.html')
 
 @app.route('/browse_db')
 def browse_db():
