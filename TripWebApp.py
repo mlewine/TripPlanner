@@ -60,6 +60,7 @@ def index():
             return redirect(url_for('index'))
     return render_template('index.html', form=form)
 
+
 @app.route('/home')
 def home():
     cursor = db.cursor()

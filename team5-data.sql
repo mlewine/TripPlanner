@@ -57,20 +57,20 @@ Insert into review values(9,'This was highly disappointing. I just saw old rubbl
 Insert into review values(10,'Surprisingly NOT the parthenon.', 'Pantheon', '2016-07-19', 'harrypotter731@hogwarts.edu',10);
 Insert into review values(11,'Finally lived my lifelong Lizzie McGuire dreams! It was incredible!', 'Trevi Fountain', '2016-07-04', 'harrypotter731@hogwarts.edu',11);
 
-Insert into activity values(1,1,'Visit Church', '2016-07-07 14:45', '2016-07-07 15:15', 1);
-Insert into activity values(2,2,'Visit Art Exhibitions', '2016-07-07 12:45', '2016-07-07 14:15', 1);
-Insert into activity values(3,3,'Visit Art Exhibitions', '2016-07-07 9:30', '2016-07-07 12:00', 1);
-Insert into activity values(4,4,'Have a picnic', '2016-07-12 17:30', '2016-07-12 19:00', 2);
-Insert into activity values(5,5,'Visit Art Exhibitions', '2016-07-12 10:30', '2016-07-12 13:00', 2);
-Insert into activity values(6,6,'Climb the tower', '2016-07-12 14:30', '2016-07-12 15:30', 2);
-Insert into activity values(7,7,'Eat Dinner', '2016-07-12 18:15', '2016-07-12 20:30', 2);
-Insert into activity values(8,8,'Eat Brunch on the Seine River', '2016-07-12 8:30', '2016-07-12 10:00', 2);
-Insert into activity values(9,9,'Visit Colosseum', '2016-05-24 15:30', '2016-05-24 17:00', 3);
-Insert into activity values(10,10,'Visit Pantheon', '2016-05-24 12:30', '2016-05-24 13:00', 3);
-Insert into activity values(11,11,'Visit Trevi Fountain', '2016-05-24 17:45', '2016-05-24 19:00', 3);
-Insert into activity values(12,4, 'Climb Eiffel Tower', '2016-07-30 17:30','2016-07-30 19:00',4);
-Insert into activity values(13,8, 'Eat Dinner', '2016-07-30 19:15','2016-07-30 20:45',4);
-Insert into activity values(14,6,'Climb the tower', '2016-07-30 13:15','2016-07-30 14:45',4);
+Insert into activity values(1,1,NULL,'Visit Church', '2016-07-07 14:45', '2016-07-07 15:15', 1);
+Insert into activity values(2,2,NULL,'Visit Art Exhibitions', '2016-07-07 12:45', '2016-07-07 14:15', 1);
+Insert into activity values(3,3,NULL,'Visit Art Exhibitions', '2016-07-07 9:30', '2016-07-07 12:00', 1);
+Insert into activity values(4,4,NULL,'Have a picnic', '2016-07-12 17:30', '2016-07-12 19:00', 2);
+Insert into activity values(5,5,NULL,'Visit Art Exhibitions', '2016-07-12 10:30', '2016-07-12 13:00', 2);
+Insert into activity values(6,6,NULL,'Climb the Notre Dame tower', '2016-07-12 14:30', '2016-07-12 15:30', 2);
+Insert into activity values(7,7,1,'Eat Dinner', '2016-07-12 18:15', '2016-07-12 20:30', 2);
+Insert into activity values(8,8,3,'Eat Brunch on the Seine River', '2016-07-12 8:30', '2016-07-12 10:00', 2);
+Insert into activity values(9,9,NULL,'Visit Colosseum', '2016-05-24 15:30', '2016-05-24 17:00', 3);
+Insert into activity values(10,10,NULL,'Visit Pantheon', '2016-05-24 12:30', '2016-05-24 13:00', 3);
+Insert into activity values(11,11,NULL,'Visit Trevi Fountain', '2016-05-24 17:45', '2016-05-24 19:00', 3);
+Insert into activity values(12,4,NULL,'Climb Eiffel Tower', '2016-07-30 17:30','2016-07-30 19:00',4);
+Insert into activity values(13,7,2,'Eat Dinner', '2016-07-30 19:15','2016-07-30 20:45',4);
+Insert into activity values(14,6,NULL,'Climb the Notre Dame tower', '2016-07-30 13:15','2016-07-30 14:45',4);
 
 Insert into reservations values(1, '2016-07-30 18:30','2016-07-30 19:30',7,60);
 Insert into reservations values(2, '2016-07-30 19:30','2016-07-30 20:30',7,60);

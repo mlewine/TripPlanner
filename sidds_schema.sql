@@ -77,6 +77,7 @@ drop table if exists activity;
 create table activity (
   activity_id int primary key not null auto_increment,
   attraction_id int,
+  reservationnumber int,
   name varchar(32),
   startdatetime datetime,
   enddatetime datetime,
