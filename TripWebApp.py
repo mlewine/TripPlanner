@@ -2,7 +2,7 @@ from collections import namedtuple
 from flask import Flask, render_template, session, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_wtf import Form
-from wtforms import StringField, SubmitField, BooleanField, validators
+from wtforms import StringField, SubmitField, BooleanField, validators, PasswordField
 from wtforms.validators import Required
 import pymysql
 
@@ -12,12 +12,13 @@ bootstrap = Bootstrap(app)
 
 class LoginForm(Form):
     email = StringField('Email address', validators=[Required()])
+    password = PasswordField('Password')
     submit = SubmitField('Log in')
 
 class RegistrationForm(Form):
     name = StringField('Name', validators=[Required()])
     email = StringField('Email address', validators=[Required()])
-    password = StringField('Password', validators=[Required()])
+    password = PasswordField('Password', validators=[Required()])
     submit = SubmitField('Register')
     
 class TripForm(Form):
@@ -35,7 +36,7 @@ def register():
     cursor = db.cursor()
     if form.validate_on_submit():
         cursor.execute("insert into user values (%s, %s, 0, 0, 1, %s)", (form.name.data, form.email.data, form.password.data) )
-
+        flash('Success!')
     # if request.method == 'POST' and form.validate():
     #     user = User()
     #     user.name = form.name.data
