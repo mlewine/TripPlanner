@@ -3,6 +3,8 @@
 
 Use team5_schema;
 
+
+
 Insert into address values(1,NULL, "Place d'Armes", NULL, 'Metz', 'France', '57000');
 Insert into address values(2,1, "Parvis des Droits de l'Homme", NULL, 'Metz', 'France', '57020');
 Insert into address values(3,2, "Rue du Haut Poirier", NULL, 'Metz', 'France', '57000');
@@ -17,6 +19,12 @@ Insert into address values(11,123, 'ABC Way', 'GA', 'Atlanta', 'USA', '30322');
 Insert into address values(12,42, 'Wallaby Way', NULL, 'Sydney', 'Australia', '2055');
 Insert into address values(13,222, 'Even Numbers St.','Wisconsin', 'Milwaukee', 'USA', '53202');
 Insert into address values(14,1600, 'Pennsylvania Avenue NW', NULL, 'Washington D.C.', 'USA', '20013');  
+Insert into address values(15,11, 'Boulevard Solidarité, Harmony Park', NULL, 'Metz', 'France', '57070')
+Insert into address values(16,16, 'Rue de la Fédération', NULL, 'Paris', 'France','75015')
+Insert into address values(17,NULL, 'Musée du Louvre', NULL, 'Paris', 'France', '75058')
+Insert into address values(18,NULL, 'Boulevard Saint-Michel', NULL, 'Paris', 'France', '75000')
+Insert into address values(19,248, 'Rue de Rivoli', NULL, 'Paris', 'France', '75001')
+Insert into address values(20, 62, 'Piazza dei Cinquecento', NULL, 'Rome', 'Italy', '00185')
 
 Insert into credit_card values('Walter White', 6293144476892690, '2016-09-20', 632, 11);
 Insert into credit_card values('Leslie Knope', 1616161616161616, '2017-01-19', 016, 12);
@@ -76,19 +84,17 @@ Insert into reservations values(1, '2016-07-30 18:30','2016-07-30 19:30',7,60);
 Insert into reservations values(2, '2016-07-30 19:30','2016-07-30 20:30',7,60);
 Insert into reservations values(3, '2016-07-30 10:30','2016-07-30 11:30',8,60);
 
-
--- Insert into public_transportation values ('Mettis A/B', 1, 'walt.white@notarealemail.com', 1);
--- Insert into public_transportation values ('Mettis A/B', 2, 'walt.white@notarealemail.com', 1);
--- Insert into public_transportation values ('Mettis A/B', 3, 'walt.white@notarealemail.com', 1);
--- Insert into public_transportation values ('BIR-HAKEIM on the #6 Metro ligne', 4, 'walt.white@notarealemail.com', 1);
--- Insert into public_transportation values ('Metro: Palais-Royal–Musée du Louvre station (line 1)', 5, 'walt.white@notarealemail.com', 1);
--- Insert into public_transportation values ('Metro: Lines B, C, 4 St.-Michel Notre Dame Stop', 6, 'walt.white@notarealemail.com', 1);
--- Insert into public_transportation values ('Metro: Line 6 (stations: Dupleix, Bir-Hakeim or Trocadéro),Line 9 (station: Trocadéro), Line 8 (station: École Militaire)', 7, 'walt.white@notarealemail.com', 1);
--- Insert into public_transportation values ('Railway: RER B or C station  Gare Saint-Michel – Nôtre Dame / Metro: line 4 station Saint-Michel', 8, 'walt.white@notarealemail.com', 1);
--- Insert into public_transportation values ('Roman Metro A,B,C', 9, 'walt.white@notarealemail.com', 1);
--- Insert into public_transportation values ('Roman Metro A,B,C', 10, 'walt.white@notarealemail.com', 1);
--- Insert into public_transportation values ('Roman Metro A,B,C', 11, 'walt.white@notarealemail.com', 1);
-
+Insert into public_transportation values ('Mettis A/B', 1, 'walt.white@notarealemail.com', 15);
+Insert into public_transportation values ('Mettis A/B', 2, 'walt.white@notarealemail.com', 15);
+Insert into public_transportation values ('Mettis A/B', 3, 'walt.white@notarealemail.com', 15);
+Insert into public_transportation values ('BIR-HAKEIM on the #6 Metro ligne', 4, 'walt.white@notarealemail.com', 16);
+Insert into public_transportation values ('Metro: Palais-Royal–Musée du Louvre station (line 1)', 5, 'walt.white@notarealemail.com', 17);
+Insert into public_transportation values ('Metro: Lines B, C, 4 St.-Michel Notre Dame Stop', 6, 'walt.white@notarealemail.com', 18);
+Insert into public_transportation values ('Metro: Line 6 (stations: Dupleix, Bir-Hakeim or Trocadéro),Line 9 (station: Trocadéro), Line 8 (station: École Militaire)', 7, 'walt.white@notarealemail.com', 19);
+Insert into public_transportation values ('Railway: RER B or C station  Gare Saint-Michel – Nôtre Dame / Metro: line 4 station Saint-Michel', 8, 'walt.white@notarealemail.com', 18);
+Insert into public_transportation values ('Roman Metro A,B,C', 9, 'walt.white@notarealemail.com', 20);
+Insert into public_transportation values ('Roman Metro A,B,C', 10, 'walt.white@notarealemail.com', 20);
+Insert into public_transportation values ('Roman Metro A,B,C', 11, 'walt.white@notarealemail.com', 20);
 
 Insert into attraction_hours values (1,1,'09:30', '17:30','Monday');
 Insert into attraction_hours values (2,1, '09:30', '17:30', 'Tuesday');
