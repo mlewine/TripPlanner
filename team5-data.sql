@@ -14,9 +14,9 @@ Insert into address values(8,NULL, 'Piazza del Colosseo', NULL, 'Rome', 'Italy',
 Insert into address values(9,NULL, 'Piazza della Rotonda', NULL, 'Rome', 'Italy', '00186');
 Insert into address values(10,NULL, 'Piazza di Trevi', NULL, 'Rome', 'Italy', '00187');
 Insert into address values(11,123, 'ABC Way', 'GA', 'Atlanta', 'USA', '30322');
-Insert into address values(12,42, 'Wallaby Way', NULL, 'Sydney', 'Australia', '76423');
-Insert into address values(13,222, 'Even Numbers St.','Wisconsin', 'Milwaukee', 'USA', '24680');
-Insert into address values(14,1600, 'Pennsylvania Avenue NW', NULL, 'Washington D.C.', 'USA', '20500');  
+Insert into address values(12,42, 'Wallaby Way', NULL, 'Sydney', 'Australia', '2055');
+Insert into address values(13,222, 'Even Numbers St.','Wisconsin', 'Milwaukee', 'USA', '53202');
+Insert into address values(14,1600, 'Pennsylvania Avenue NW', NULL, 'Washington D.C.', 'USA', '20013');  
 
 Insert into credit_card values('Walter White', 6293144476892690, '2016-09-20', 632, 11);
 Insert into credit_card values('Leslie Knope', 1616161616161616, '2017-01-19', 016, 12);
