@@ -15,11 +15,11 @@ class LoginForm(Form):
     submit = SubmitField('Log in')
 
 class RegistrationForm(Form):
+    name = StringField('Name', validators=[Required()])
     email = StringField('Email address', validators=[Required()])
-    username = StringField('Username', validators=[Required()])
     password = StringField('Password', validators=[Required()])
     submit = SubmitField('Register')
-
+    
 class TripForm(Form):
     pass
 
@@ -32,6 +32,10 @@ class AttractionForm(Form):
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
+    cursor = db.cursor()
+    if form.validate_on_submit():
+        cursor.execute("insert into user values (%s, %s, 0, 0, 1, %s)", (form.name.data, form.email.data, form.password.data) )
+
     # if request.method == 'POST' and form.validate():
     #     user = User()
     #     user.name = form.name.data

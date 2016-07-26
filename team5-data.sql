@@ -22,10 +22,10 @@ Insert into credit_card values('Walter White', 6293144476892690, '2016-09-20', 6
 Insert into credit_card values('Leslie Knope', 1616161616161616, '2017-01-19', 016, 12);
 Insert into credit_card values('Harry Potter', 9787823478925813, '2018-08-18', 731, 14);
 
-Insert into user values('Walter White', 'walt.white@notarealemail.com', NULL, NULL, 11);
-Insert into user values('Leslie Knope', 'l.knope@notarealemail.com', NULL, 'Yes', 12);
-Insert into user values('Homer Simpson', 'homer_simpson234@thisisfake.com', 'Yes', NULL, 13); 
-Insert into user values('Harry Potter', 'harrypotter731@hogwarts.edu', NULL, NULL, 14);
+Insert into user values('Walter White', 'walt.white@notarealemail.com', NULL, NULL, 11, 'password');
+Insert into user values('Leslie Knope', 'l.knope@notarealemail.com', NULL, 'Yes', 12, 'password');
+Insert into user values('Homer Simpson', 'homer_simpson234@thisisfake.com', 'Yes', NULL, 13, 'password'); 
+Insert into user values('Harry Potter', 'harrypotter731@hogwarts.edu', NULL, NULL, 14, 'password');
 
 Insert into trip values(1,'Metz', '2016-07-07', 'Yes', 'walt.white@notarealemail.com');
 Insert into trip values(2,'Paris', '2016-07-12', 'Yes', 'homer_simpson234@thisisfake.com');

@@ -31,6 +31,7 @@ CREATE TABLE if not exists user (
   suspended varchar(16),
   isadmin varchar(16),
   address_id int,
+  password varchar(64),
   foreign key(address_id) references address(address_id)
   ON DELETE SET NULL
 );
