@@ -30,52 +30,52 @@ class AttractionForm(Form):
     pass
     
 @app.route('/register', methods=['GET', 'POST'])
-def register(request):
-    form = RegistrationForm(request.POST)
-    if request.method == 'POST' and form.validate():
-        user = User()
-        user.name = form.name.data
-        user.email = form.email.data
-        user.save()
-        redirect('register')
-    return render_response('register.html', form=form)
+def register():
+    form = RegistrationForm()
+    # if request.method == 'POST' and form.validate():
+    #     user = User()
+    #     user.name = form.name.data
+    #     user.email = form.email.data
+    #     user.save()
+    #     redirect('register')
+    return render_template('register.html', form=form)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = LoginForm()
-    if form.validate_on_submit():
-        cursor = db.cursor()
-        print("form.email.data=" + form.email.data)
-        cursor.execute("select customer_id, first_name, last_name " +
-                       "from customer where email = %s",
-                       (form.email.data,))
-        rows = cursor.fetchall()
-        if rows:
-            print("successful login")
-            session['customer_id'] = rows[0][0]
-            session['customer_name'] = "{} {}".format(rows[0][1], rows[0][2])
-            return redirect(url_for('home'))
-        else:
-            flash('Email address not found in customer database.')
-            return redirect(url_for('index'))
+    # if form.validate_on_submit():
+    #     cursor = db.cursor()
+    #     print("form.email.data=" + form.email.data)
+    #     cursor.execute("select customer_id, first_name, last_name " +
+    #                    "from customer where email = %s",
+    #                    (form.email.data,))
+    #     rows = cursor.fetchall()
+    #     if rows:
+    #         print("successful login")
+    #         session['customer_id'] = rows[0][0]
+    #         session['customer_name'] = "{} {}".format(rows[0][1], rows[0][2])
+    #         return redirect(url_for('home'))
+    #     else:
+    #         flash('Email address not found in customer database.')
+    #         return redirect(url_for('index'))
     return render_template('index.html', form=form)
 
 
 @app.route('/home')
 def home():
     cursor = db.cursor()
-    cursor.execute(
-        "select rental_id, date(rental_date),  " +
-        "       date(rental_date + interval film.rental_duration day) as due_date, " +
-        "       film.title " +
-        "from rental join inventory using(inventory_id) " +
-        "            join film using (film_id) "+
-        "where customer_id = %s and return_date is null",
-        (session['customer_id']))
-    Rental = namedtuple('Rental', ['rental_id', 'rental_date',
-                                   'due_date', 'film_title'])
-    rentals = [Rental._make(row) for row in cursor.fetchall()]
-    cursor.close()
+    # cursor.execute(
+    #     "select rental_id, date(rental_date),  " +
+    #     "       date(rental_date + interval film.rental_duration day) as due_date, " +
+    #     "       film.title " +
+    #     "from rental join inventory using(inventory_id) " +
+    #     "            join film using (film_id) "+
+    #     "where customer_id = %s and return_date is null",
+    #     (session['customer_id']))
+    # Rental = namedtuple('Rental', ['rental_id', 'rental_date',
+    #                                'due_date', 'film_title'])
+    # rentals = [Rental._make(row) for row in cursor.fetchall()]
+    # cursor.close()
     return render_template('home.html', rentals=rentals,
                            customer=session['customer_name'])
 
@@ -114,7 +114,7 @@ def table(table):
                            columns=column_names, rows=rows)
 
 if __name__ == '__main__':
-    dbname = 'sakila'
+    dbname = 'team5_schema'
     db = pymysql.connect(host='localhost',
                          user='root', passwd='', db=dbname)
     app.run(debug=True)
