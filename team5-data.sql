@@ -18,9 +18,9 @@ Insert into address values(12,42, 'Wallaby Way', NULL, 'Sydney', 'Australia', '7
 Insert into address values(13,222, 'Even Numbers St.','Wisconsin', 'Milwaukee', 'USA', '24680');
 Insert into address values(14,1600, 'Pennsylvania Avenue NW', NULL, 'Washington D.C.', 'USA', '20500');  
 
-Insert into credit_card values('Walter White', 6293144476892690, '2016-09-20', 632, 1);
-Insert into credit_card values('Leslie Knope', 1616161616161616, '2017-01-19', 016, 2);
-Insert into credit_card values('Harry Potter', 9787823478925813, '2018-08-18', 731, 4);
+Insert into credit_card values('Walter White', 6293144476892690, '2016-09-20', 632, 11);
+Insert into credit_card values('Leslie Knope', 1616161616161616, '2017-01-19', 016, 12);
+Insert into credit_card values('Harry Potter', 9787823478925813, '2018-08-18', 731, 14);
 
 Insert into user values('Walter White', 'walt.white@notarealemail.com', NULL, NULL, 11);
 Insert into user values('Leslie Knope', 'l.knope@notarealemail.com', NULL, True, 12);
