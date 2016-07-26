@@ -19,6 +19,16 @@ class RegistrationForm(Form):
     name = StringField('Name', validators=[Required()])
     email = StringField('Email address', validators=[Required()])
     password = PasswordField('Password', validators=[Required()])
+    name = StringField('Name on Credit Card', validators=[Required()])
+    ccnumber = StringField('Credit Card Number', validators=[Required()])
+    card_expdate = StringField('Credit Card Expiration Date', validators=[Required()])
+    cvv = IntegerField('CVV', validators=[Required()])
+    street_num = IntegerField('Street Number', validators=[Required()])
+    street = StringField('Street Name', validators=[Required()])
+    state = StringField('State', validators=[Required()])
+    city = StringField('City', validators=[Required()])
+    country = StringField('Country', validators=[Required()])
+    zipcode = StringField('Zipcode', validators=[Required()])
     submit = SubmitField('Register')
     
 class TripForm(Form):
