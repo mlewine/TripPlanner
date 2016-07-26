@@ -90,4 +90,82 @@ Insert into reservations values(3, '2016-07-30 10:30','2016-07-30 11:30',8,60);
 -- Insert into public_transportation values ('Roman Metro A,B,C', 11, 'walt.white@notarealemail.com', 1);
 
 
--- Insert into attraction_hours values (1,2,'12:45', '20:30','Monday');
+Insert into attraction_hours values (1,1,'09:30', '17:30','Monday');
+Insert into attraction_hours values (2,1, '09:30', '17:30', 'Tuesday');
+Insert into attraction_hours values (3,1, '09:30', '17:30', 'Wednesday');
+Insert into attraction_hours values (4,1, '09:30', '17:30', 'Thursday');
+Insert into attraction_hours values (5,1, '09:30', '17:30', 'Friday');
+Insert into attraction_hours values (6,1, '14:00', '18:00', 'Sunday');
+Insert into attraction_hours values (7,2, '10:00', '18:00', 'Monday');
+Insert into attraction_hours values (8,2, '10:00', '18:00', 'Wednesday');
+Insert into attraction_hours values (9,2, '10:00', '18:00', 'Thursday');
+Insert into attraction_hours values (10,2, '10:00', '19:00', 'Friday');
+Insert into attraction_hours values (11,2, '10:00', '19:00', 'Saturday');
+Insert into attraction_hours values (12,2, '10:00', '19:00', 'Sunday');
+Insert into attraction_hours values (13,3, '09:00', '17:00', 'Monday');
+Insert into attraction_hours values (14,3, '09:00', '17:00', 'Wednesday');
+Insert into attraction_hours values (15,3, '09:00', '17:00', 'Thursday');
+Insert into attraction_hours values (16,3, '09:00', '17:00', 'Friday');
+Insert into attraction_hours values (17,3, '09:00', '17:00', 'Saturday');
+Insert into attraction_hours values (18,3, '09:00', '17:00', 'Sunday');
+Insert into attraction_hours values (19,4, '09:00', '00:00', 'Monday');
+Insert into attraction_hours values (20,4, '09:00', '00:00', 'Tuesday');
+Insert into attraction_hours values (21,4, '09:00', '00:00', 'Wednesday');
+Insert into attraction_hours values (22,4, '09:00', '00:00', 'Thursday');
+Insert into attraction_hours values (23,4, '09:00', '00:00', 'Friday');
+Insert into attraction_hours values (24,4, '09:00', '00:00', 'Saturday');
+Insert into attraction_hours values (25,4, '09:00', '00:00', 'Sunday');
+Insert into attraction_hours values (26,5, '09:00', '18:00', 'Monday');
+Insert into attraction_hours values (27,5, '09:00', '18:00', 'Wednesday');
+Insert into attraction_hours values (28,5, '09:00', '18:00', 'Thursday');
+Insert into attraction_hours values (29,5, '09:00', '18:00', 'Friday');
+Insert into attraction_hours values (30,5, '09:00', '18:00', 'Saturday');
+Insert into attraction_hours values (31,5, '09:00', '18:00', 'Sunday');
+Insert into attraction_hours values (32,6, '08:00', '18:45', 'Monday');
+Insert into attraction_hours values (33,6, '08:00', '18:45', 'Tuesday');
+Insert into attraction_hours values (34,6, '08:00', '18:45', 'Wednesday');
+Insert into attraction_hours values (35,6, '08:00', '18:45', 'Thursday');
+Insert into attraction_hours values (36,6, '08:00', '18:45', 'Friday');
+Insert into attraction_hours values (37,6, '08:00', '18:45', 'Saturday');
+Insert into attraction_hours values (38,6, '08:00', '18:45', 'Sunday');
+Insert into attraction_hours values (39,7, '18:30', '21:00', 'Monday');
+Insert into attraction_hours values (40,7, '18:30', '21:00', 'Tuesday');
+Insert into attraction_hours values (41,7, '18:30', '21:00', 'Wednesday');
+Insert into attraction_hours values (42,7, '18:30', '21:00', 'Thursday');
+Insert into attraction_hours values (43,7, '18:30', '21:00', 'Friday');
+Insert into attraction_hours values (44,7, '18:30', '21:00', 'Saturday');
+Insert into attraction_hours values (45,7, '18:30', '21:00', 'Sunday');
+Insert into attraction_hours values (46,8, '10:30', '11:30', 'Monday');
+Insert into attraction_hours values (47,8, '10:30', '11:30', 'Tuesday');
+Insert into attraction_hours values (48,8, '10:30', '11:30', 'Wednesday');
+Insert into attraction_hours values (49,8, '10:30', '11:30', 'Thursday');
+Insert into attraction_hours values (50,8, '10:30', '11:30', 'Friday');
+Insert into attraction_hours values (51,8, '10:30', '11:30', 'Saturday');
+Insert into attraction_hours values (52,8, '10:30', '11:30', 'Sunday');
+Insert into attraction_hours values (53,9, '08:30', '15:30', 'Monday');
+Insert into attraction_hours values (54,9, '08:30', '15:30', 'Tuesday');
+Insert into attraction_hours values (55,9, '08:30', '15:30', 'Wednesday');
+Insert into attraction_hours values (56,9, '08:30', '15:30', 'Thursday');
+Insert into attraction_hours values (57,9, '08:30', '15:30', 'Friday');
+Insert into attraction_hours values (58,9, '08:30', '15:30', 'Saturday');
+Insert into attraction_hours values (59,9, '08:30', '15:30', 'Sunday');
+Insert into attraction_hours values (60,10, '09:30', '19:30', 'Monday');
+Insert into attraction_hours values (61,10, '09:30', '19:30', 'Tuesday');
+Insert into attraction_hours values (62,10, '09:30', '19:30', 'Wednesday');
+Insert into attraction_hours values (63,10, '09:30', '19:30', 'Thursday');
+Insert into attraction_hours values (64,10, '09:30', '19:30', 'Friday');
+Insert into attraction_hours values (65,10, '09:30', '18:00', 'Saturday');
+Insert into attraction_hours values (66,10, '09:30', '18:00', 'Sunday');
+Insert into attraction_hours values (67,11, '00:00', '24:00', 'Monday');
+Insert into attraction_hours values (68,11, '00:00', '24:00', 'Tuesday');
+Insert into attraction_hours values (69,11, '00:00', '24:00', 'Wednesday');
+Insert into attraction_hours values (70,11, '00:00', '24:00', 'Thursday');
+Insert into attraction_hours values (71,11, '00:00', '24:00', 'Friday');
+Insert into attraction_hours values (72,11, '00:00', '24:00', 'Saturday');
+Insert into attraction_hours values (73,11, '00:00', '24:00', 'Sunday');
+
+
+
+
+
+
