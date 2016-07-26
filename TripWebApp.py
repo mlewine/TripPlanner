@@ -48,21 +48,22 @@ def register():
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = LoginForm()
-    # if form.validate_on_submit():
-    #     cursor = db.cursor()
-    #     print("form.email.data=" + form.email.data)
-    #     cursor.execute("select customer_id, first_name, last_name " +
-    #                    "from customer where email = %s",
-    #                    (form.email.data,))
-    #     rows = cursor.fetchall()
-    #     if rows:
-    #         print("successful login")
-    #         session['customer_id'] = rows[0][0]
-    #         session['customer_name'] = "{} {}".format(rows[0][1], rows[0][2])
-    #         return redirect(url_for('home'))
-    #     else:
-    #         flash('Email address not found in customer database.')
-    #         return redirect(url_for('index'))
+    if form.validate_on_submit():
+        cursor = db.cursor()
+        # print("form.email.data=" + form.email.data)
+        cursor.execute("select user_email, name, password" +
+                       "from user where user_email = %s",
+                       (form.email.data,))
+        rows = cursor.fetchall()
+        if rows:
+            print("successful login")
+            session['user_name'] = rows[0][1]
+            session['email'] = rows[0][0]
+            # session['customer_name'] = "{} {}".format(rows[0][1], rows[0][2])
+            return redirect(url_for('home'))
+        else:
+            flash('Email address not found in customer database.')
+            return redirect(url_for('index'))
     return render_template('index.html', form=form)
 
 
@@ -93,16 +94,8 @@ def browse_db():
     cursor.close()
     return render_template('browse_db.html', dbname=dbname, tables=tables)
 
-@app.route('/browse_db')
-def browse_attractions():
-    cursor = db.cursor()
-    cursor.execute("show tables")
-    tables = [field[0] for field in cursor.fetchall()[1:]]
-    cursor.close()
-    return render_template('browse_db.html', dbname=dbname, tables=tables)
-
-@app.route('/browse_db')
-def browse_activities():
+@app.route('/browse')
+def browse():
     cursor = db.cursor()
     cursor.execute("show tables")
     tables = [field[0] for field in cursor.fetchall()[1:]]
