@@ -29,7 +29,7 @@ Insert into user values('Harry Potter', 'harrypotter731@hogwarts.edu', NULL, NUL
 
 Insert into trip values(1,'Metz', '2016-07-07', 'Yes', 'walt.white@notarealemail.com');
 Insert into trip values(2,'Paris', '2016-07-12', 'Yes', 'homer_simpson234@thisisfake.com');
-Insert into trip values(3,'Rome', '2016-05-24', 'Yes', 'harrypotter731@hogwarts.edu');
+Insert into trip values(3,'Rome', '2016-07-24', 'Yes', 'harrypotter731@hogwarts.edu');
 Insert into trip values(4,'Paris', '2016-07-30', 'Yes', 'l.knope@notarealemail.com');
 
 
@@ -46,16 +46,16 @@ Insert into attraction values(10,'Pantheon', 'It is one of the best-preserved of
 Insert into attraction values(11,'Trevi Fountain', 'The Trevi Fountain is a fountain in the Trevi district in Rome, Italy, designed by Italian architect Nicola Salvi and completed by Pietro Bracci', 10, NULL,NULL);
 
 Insert into review values(1,'Beautiful church!', 'Metz Cathedral', '2016-07-07', 'walt.white@notarealemail.com',1);
-Insert into review values(2,'Incredible art! Wish I could have spent more time there, but I had to catch a train', 'Centre Pompidou-Metz', '2016-06-12', 'walt.white@notarealemail.com',2);
-Insert into review values(3,"So much to see here! Definitely could've spent the whole day here", 'Museums of Metz', '2016-05-21', 'walt.white@notarealemail.com',3);
+Insert into review values(2,'Incredible art! Wish I could have spent more time there, but I had to catch a train', 'Centre Pompidou-Metz', '2016-07-07', 'walt.white@notarealemail.com',2);
+Insert into review values(3,"So much to see here! Definitely could've spent the whole day here", 'Museums of Metz', '2016-07-07', 'walt.white@notarealemail.com',3);
 Insert into review values(4,"Terrible views from the top. I couldn't even see the Eiffel Tower. Not worth the climb", 'Eiffel Tower', '2016-07-12', 'homer_simpson234@thisisfake.com',4);
-Insert into review values(5,'"Would much rather see the pyramid in Egypt. 10/10 disappointed" / "It was just a glass pyramid. Not sure how some people spend a whole day there"', 'Louvre', '2016-07-13', 'homer_simpson234@thisisfake.com',5);
-Insert into review values(6,'When I heard flying buttresses I got all excited. This left me very dissappointed when I found myself in a dilapidated cult building', 'Notre Dame', '2016-06-15', 'homer_simpson234@thisisfake.com',6);
-Insert into review values(7,'"Tiniest portions of all time." / "My dinner was some leaves and sauce on a plate. Paid 65 euros."', '58 Tour Eiffel', '2016-02-16', 'homer_simpson234@thisisfake.com',7);
-Insert into review values(8,'SO GOOD! I highly recommend trying their breakfast crepes', 'Brunch boat cruise', '2016-03-04', 'homer_simpson234@thisisfake.com',8);
-Insert into review values(9,'This was highly disappointing. I just saw old rubble.', 'Colosseum', '2016-05-24', 'harrypotter731@hogwarts.edu',9);
-Insert into review values(10,'Surprisingly NOT the parthenon.', 'Pantheon', '2016-07-19', 'harrypotter731@hogwarts.edu',10);
-Insert into review values(11,'Finally lived my lifelong Lizzie McGuire dreams! It was incredible!', 'Trevi Fountain', '2016-07-04', 'harrypotter731@hogwarts.edu',11);
+Insert into review values(5,'"Would much rather see the pyramid in Egypt. 10/10 disappointed" / "It was just a glass pyramid. Not sure how some people spend a whole day there"', 'Louvre', '2016-07-12', 'homer_simpson234@thisisfake.com',5);
+Insert into review values(6,'When I heard flying buttresses I got all excited. This left me very dissappointed when I found myself in a dilapidated cult building', 'Notre Dame', '2016-07-12', 'homer_simpson234@thisisfake.com',6);
+Insert into review values(7,'"Tiniest portions of all time." / "My dinner was some leaves and sauce on a plate. Paid 65 euros."', '58 Tour Eiffel', '2016-07-12', 'homer_simpson234@thisisfake.com',7);
+Insert into review values(8,'SO GOOD! I highly recommend trying their breakfast crepes', 'Brunch boat cruise', '2016-07-12', 'homer_simpson234@thisisfake.com',8);
+Insert into review values(9,'This was highly disappointing. I just saw old rubble.', 'Colosseum', '2016-07-24', 'harrypotter731@hogwarts.edu',9);
+Insert into review values(10,'Surprisingly NOT the parthenon.', 'Pantheon', '2016-07-24', 'harrypotter731@hogwarts.edu',10);
+Insert into review values(11,'Finally lived my lifelong Lizzie McGuire dreams! It was incredible!', 'Trevi Fountain', '2016-07-24', 'harrypotter731@hogwarts.edu',11);
 
 Insert into activity values(1,1,NULL,'Visit Church', '2016-07-07 14:45', '2016-07-07 15:15', 1);
 Insert into activity values(2,2,NULL,'Visit Art Exhibitions', '2016-07-07 12:45', '2016-07-07 14:15', 1);
@@ -65,9 +65,9 @@ Insert into activity values(5,5,NULL,'Visit Art Exhibitions', '2016-07-12 10:30'
 Insert into activity values(6,6,NULL,'Climb the Notre Dame tower', '2016-07-12 14:30', '2016-07-12 15:30', 2);
 Insert into activity values(7,7,1,'Eat Dinner', '2016-07-12 18:15', '2016-07-12 20:30', 2);
 Insert into activity values(8,8,3,'Eat Brunch on the Seine River', '2016-07-12 8:30', '2016-07-12 10:00', 2);
-Insert into activity values(9,9,NULL,'Visit Colosseum', '2016-05-24 15:30', '2016-05-24 17:00', 3);
-Insert into activity values(10,10,NULL,'Visit Pantheon', '2016-05-24 12:30', '2016-05-24 13:00', 3);
-Insert into activity values(11,11,NULL,'Visit Trevi Fountain', '2016-05-24 17:45', '2016-05-24 19:00', 3);
+Insert into activity values(9,9,NULL,'Visit Colosseum', '2016-07-24 15:30', '2016-07-24 17:00', 3);
+Insert into activity values(10,10,NULL,'Visit Pantheon', '2016-07-24 12:30', '2016-07-24 13:00', 3);
+Insert into activity values(11,11,NULL,'Visit Trevi Fountain', '2016-07-24 17:45', '2016-07-24 19:00', 3);
 Insert into activity values(12,4,NULL,'Climb Eiffel Tower', '2016-07-30 17:30','2016-07-30 19:00',4);
 Insert into activity values(13,7,2,'Eat Dinner', '2016-07-30 19:15','2016-07-30 20:45',4);
 Insert into activity values(14,6,NULL,'Climb the Notre Dame tower', '2016-07-30 13:15','2016-07-30 14:45',4);
