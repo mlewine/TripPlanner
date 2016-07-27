@@ -106,9 +106,6 @@ def home():
     cursor.execute("select * from trip")
     trip_rows = cursor.fetchall()
     trip_column_names = [desc[0] for desc in cursor.description]
-    # cursor.execute("select * from " + public_transportation)
-    # pubtransport_rows = cursor.fetchall()
-    # pubtransport_column_names = [desc[0] for desc in cursor.description]
     cursor.close()
     return render_template('home.html', rows=trip_rows)
 

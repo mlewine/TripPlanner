@@ -20,11 +20,13 @@
   {% for row in rows %}
     <tr>
         <tr class="separator" />
-        <tr><td><button class="editbtn">Add attraction to trip</button></td></tr>
+        
       {% for cell in row %}
       
         <td>{{cell}}</td>
+        
       {% endfor %}
+      <td><button type="button">Add attraction to trip</button><td>
     </tr>
   {% endfor %}
 </table>

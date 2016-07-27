@@ -18,13 +18,15 @@ td
     {% endfor %}
   </tr>
   {% for row in rows %}
+  
     <tr>
-      <button type="button">Click Me!</button>
+      
       {% for cell in row %}
         <td>{{cell}}</td>
       {% endfor %}
+      
     </tr>
-    <button type="button">Click Me!</button>
+    
   {% endfor %}
 </table>
 <a href="/browse_db">Back to table list</a>
