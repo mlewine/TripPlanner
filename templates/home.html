@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% block title %}Home for {{customer}}{% endblock %}
 
-	{% block content %}
-	<h1>Welcome, {{session['user_name']}}!</h1>
-	<h2>{{dbname}} Trips</h2>
-	<p>Click on a trip to see its activities and public transportation.</p>
-		<form action=html.BrowseTrips method=get class=browsetrips>
-	<ul>
-	{% for trip in trips %}
-	    <li><h3>{{trip.city}</h3>
-	{%else%}
-	    <li><em> No trips. Go plan one!</em>
-	  {% endfor %}
-	</ul>
-	{% endblock %}
-
+{% block content %}
+<h1>Welcome, {{session['user_name']}}!</h1>
+<table>
+  <tr>
+  </tr>
+  {% for rental in rentals %}
+    <tr>
+      {% for field in rental %}
+        <td>{{field}}</td>
+      {% endfor %}
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}
