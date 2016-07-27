@@ -126,6 +126,21 @@ def table(table):
     return render_template('table.html', table=table,
                            columns=column_names, rows=rows)
 
+@app.route('/table/<table>')
+def browsetrips(trip):
+    cursor = db.cursor()
+    cursor.execute("select * from " + trip)
+    trip_rows = cursor.fetchall()
+    trip_column_names = [desc[0] for desc in cursor.description]
+    # cursor.execute("select * from " + public_transportation)
+    # pubtransport_rows = cursor.fetchall()
+    # pubtransport_column_names = [desc[0] for desc in cursor.description]
+    cursor.close()
+    return render_template('BrowseTrips.html', table=trip,
+                           columns=trip_column_names, rows=trip_rows)
+
+
+
 if __name__ == '__main__':
     dbname = 'team5_schema'
     db = pymysql.connect(host='localhost',
