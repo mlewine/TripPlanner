@@ -35,7 +35,7 @@ class ReviewForm(Form):
     attraction_review=StringField('Attraction Name', validators=[Required()])
     title=StringField('Title of Review',validators=[Required()])
     review=StringField('Review', validators=[Required()])
-    date=StringField('Date',validators=[Required()])
+    date=StringField('Date (yyyy-mm-dd)',validators=[Required()])
     submit = SubmitField('Submit')
     
 class TripForm(Form):
