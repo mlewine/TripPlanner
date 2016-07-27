@@ -94,9 +94,9 @@ CREATE TABLE if not exists public_transportation (
   pt_id int primary key auto_increment,
   transportation_name varchar(16),
   attraction_id int, 
-  user_email varchar(64) unique,
+ # user_email varchar(64) unique,
   address_id int,
-  foreign key (address_id) references address(address_id),
+ # foreign key (address_id) references address(address_id),
   foreign key (user_email) references user(user_email),
   foreign key (attraction_id) references attraction(attraction_id)
   ON UPDATE CASCADE
