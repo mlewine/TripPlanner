@@ -96,8 +96,8 @@ CREATE TABLE if not exists public_transportation (
   attraction_id int, 
  # user_email varchar(64) unique,
   address_id int,
- # foreign key (address_id) references address(address_id),
-  foreign key (user_email) references user(user_email),
+  foreign key (address_id) references address(address_id),
+ # foreign key (user_email) references user(user_email),
   foreign key (attraction_id) references attraction(attraction_id)
   ON UPDATE CASCADE
   ON DELETE SET NULL

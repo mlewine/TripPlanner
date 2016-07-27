@@ -82,17 +82,17 @@ Insert into reservations values(1, '2016-07-30 18:30','2016-07-30 19:30',7,60);
 Insert into reservations values(2, '2016-07-30 19:30','2016-07-30 20:30',7,60);
 Insert into reservations values(3, '2016-07-30 10:30','2016-07-30 11:30',8,60);
 
-Insert into public_transportation values (1,'Mettis A/B', 1, 'walt.white@notarealemail.com', 15);
-Insert into public_transportation values (2,'Mettis B', 2, 'walt.white@notarealemail.com', 15);
-Insert into public_transportation values (3,'Mettis A', 3, 'walt.white@notarealemail.com', 15);
-Insert into public_transportation values (4,'BIR-HAKEIM on the #6 Metro ligne', 4, 'walt.white@notarealemail.com', 16);
-Insert into public_transportation values (5,'Metro: Palais-Royal–Musée du Louvre station (line 1)', 5, 'walt.white@notarealemail.com', 17);
-Insert into public_transportation values (6,'Metro: Lines B, C, 4 St.-Michel Notre Dame Stop', 6, 'walt.white@notarealemail.com', 18);
-Insert into public_transportation values (7,'Metro: Line 6 (stations: Dupleix, Bir-Hakeim or Trocadéro),Line 9 (station: Trocadéro), Line 8 (station: École Militaire)', 7, 'walt.white@notarealemail.com', 19);
-Insert into public_transportation values (8,'Railway: RER B or C station  Gare Saint-Michel – Nôtre Dame / Metro: line 4 station Saint-Michel', 8, 'walt.white@notarealemail.com', 18);
-Insert into public_transportation values (9,'Roman Metro A,B', 9, 'walt.white@notarealemail.com', 20);
-Insert into public_transportation values (10,'Roman Metro B,C', 10, 'walt.white@notarealemail.com', 20);
-Insert into public_transportation values (11,'Roman Metro A,C', 11, 'walt.white@notarealemail.com', 20);
+Insert into public_transportation values (1,'Mettis A/B', 1, 15);
+Insert into public_transportation values (2,'Mettis B', 2, 15);
+Insert into public_transportation values (3,'Mettis A', 3, 15);
+Insert into public_transportation values (4,'BIR-HAKEIM on the #6 Metro ligne', 4, 16);
+Insert into public_transportation values (5,'Metro: Palais-Royal–Musée du Louvre station (line 1)', 5, 17);
+Insert into public_transportation values (6,'Metro: Lines B, C, 4 St.-Michel Notre Dame Stop', 6, 18);
+Insert into public_transportation values (7,'Metro: Line 6 (stations: Dupleix, Bir-Hakeim or Trocadéro),Line 9 (station: Trocadéro), Line 8 (station: École Militaire)', 7, 19);
+Insert into public_transportation values (8,'Railway: RER B or C station  Gare Saint-Michel – Nôtre Dame / Metro: line 4 station Saint-Michel', 8, 18);
+Insert into public_transportation values (9,'Roman Metro A,B', 9, 20);
+Insert into public_transportation values (10,'Roman Metro B,C', 10, 20);
+Insert into public_transportation values (11,'Roman Metro A,C', 11, 20);
 
 Insert into attraction_hours values (1,1,'09:30', '17:30','Monday');
 Insert into attraction_hours values (2,1, '09:30', '17:30', 'Tuesday');
