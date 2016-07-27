@@ -19,6 +19,16 @@ class RegistrationForm(Form):
     name = StringField('Name', validators=[Required()])
     email = StringField('Email address', validators=[Required()])
     password = PasswordField('Password', validators=[Required()])
+    name = StringField('Name on Credit Card', validators=[Required()])
+    ccnumber = StringField('Credit Card Number', validators=[Required()])
+    card_expdate = StringField('Credit Card Expiration Date', validators=[Required()])
+    cvv = StringField('CVV', validators=[Required()])
+    street_num = StringField('Street Number', validators=[Required()])
+    street = StringField('Street Name', validators=[Required()])
+    state = StringField('State', validators=[Required()])
+    city = StringField('City', validators=[Required()])
+    country = StringField('Country', validators=[Required()])
+    zipcode = StringField('Zipcode', validators=[Required()])
     submit = SubmitField('Register')
     
 class TripForm(Form):
@@ -50,6 +60,7 @@ def index():
     form = LoginForm()
     if form.validate_on_submit():
         cursor = db.cursor()
+
         # print("form.email.data=" + form.email.data)
         cursor.execute("select user_email, name, password" +
                        "from user where user_email = %s",
@@ -63,6 +74,18 @@ def index():
             return redirect(url_for('home'))
         else:
             flash('Email address not found in customer database.')
+        print("form.email.data=" + form.email.data)
+        cursor.execute("select user_email,name from user where user_email = %s and password = %s;",
+                       (form.email.data, form.password.data))
+        rows = cursor.fetchall()
+        if rows:
+            print("successful login")
+            session['user_email'] = rows[0][0]
+            session['user_name'] = "{}".format(rows[0][1])
+            return redirect(url_for('home'))
+        else:
+            flash('Email address and password not found in database.')
+>>>>>>> 79fc583ceacb46e74dd8cb8b109b79efa66f3c0a
             return redirect(url_for('index'))
     return render_template('index.html', form=form)
 
@@ -82,8 +105,7 @@ def home():
     #                                'due_date', 'film_title'])
     # rentals = [Rental._make(row) for row in cursor.fetchall()]
     # cursor.close()
-    # return render_template('home.html', rentals=rentals,
-    #                        customer=session['customer_name'])
+    return render_template('home.html', customer=session['user_name'])
     return render_template('home.html')
 
 @app.route('/browse_db')

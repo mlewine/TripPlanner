@@ -56,6 +56,7 @@ create table if not exists attraction (
   address_id int,
   price float, 
   quantity int,
+  requires_reservation bit,
   foreign key(address_id) references address(address_id)
   ON DELETE SET NULL
 );
@@ -91,12 +92,13 @@ create table activity (
 
 DROP TABLE if exists public_transportation;
 CREATE TABLE if not exists public_transportation (
-  transportation_name varchar(16) primary key unique,
+  pt_id int primary key auto_increment,
+  transportation_name varchar(256),
   attraction_id int, 
-  user_email varchar(64) unique,
+ # user_email varchar(64) unique,
   address_id int,
   foreign key (address_id) references address(address_id),
-  foreign key (user_email) references user(user_email),
+ # foreign key (user_email) references user(user_email),
   foreign key (attraction_id) references attraction(attraction_id)
   ON UPDATE CASCADE
   ON DELETE SET NULL
@@ -104,10 +106,11 @@ CREATE TABLE if not exists public_transportation (
 
 drop table if exists attraction_hours;
 create table if not exists attraction_hours (
+  hour_id int primary key not null auto_increment,
   attraction_id int,
   opening_time time,
   closing_time time,
-  day_of_the_week varchar(16) primary key not null,
+  day_of_the_week varchar(16) not null,
   foreign key (attraction_id) references attraction (attraction_id)
   ON DELETE SET NULL
 );
