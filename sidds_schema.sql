@@ -92,7 +92,7 @@ create table activity (
 DROP TABLE if exists public_transportation;
 CREATE TABLE if not exists public_transportation (
   pt_id int primary key auto_increment,
-  transportation_name varchar(16),
+  transportation_name varchar(256),
   attraction_id int, 
  # user_email varchar(64) unique,
   address_id int,
