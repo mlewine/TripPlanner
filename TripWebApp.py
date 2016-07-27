@@ -101,13 +101,15 @@ def browse_db():
     cursor.close()
     return render_template('browse_db.html', dbname=dbname, tables=tables)
 
-@app.route('/browse')
+@app.route('/attractions')
 def browse():
     cursor = db.cursor()
-    cursor.execute("show tables")
-    tables = [field[0] for field in cursor.fetchall()[1:]]
+    cursor.execute("select name, description, price from attraction")
+    attractions = cursor.fetchall()
+    column_names = [desc[0] for desc in cursor.description]
     cursor.close()
-    return render_template('browse_db.html', dbname=dbname, tables=tables)
+    return render_template('attractions.html', table=table,
+                           columns=column_names, rows=attractions)
 
 @app.route('/table/<table>')
 def table(table):
