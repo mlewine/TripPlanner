@@ -4,6 +4,13 @@
 {% block content %}
 <a href="/browse_db">Back to table list</a>
 <h1>{{table}} Data</h1>
+
+<style type="text/css">
+td
+{
+    padding:10px 20px 20px 10px;
+}
+</style>
 <table>
   <tr>
     {% for column in columns %}
