@@ -30,6 +30,13 @@ class RegistrationForm(Form):
     country = StringField('Country', validators=[Required()])
     zipcode = StringField('Zipcode', validators=[Required()])
     submit = SubmitField('Register')
+
+class ReviewForm(Form):
+    attraction_review=StringField('Attraction Name', validators=[Required()])
+    title=StringField('Title of Review',validators=[Required()])
+    review=StringField('Review', validators=[Required()])
+    date=StringField('Date',validators=[Required()])
+    submit = SubmitField('Submit')
     
 class TripForm(Form):
     pass
@@ -59,6 +66,19 @@ def register():
     #     user.save()
     #     redirect('register')
     return render_template('register.html', form=form)
+
+@app.route('/review', methods=['GET', 'POST'])
+def review():
+    form=ReviewForm()
+    cursor = db.cursor()
+    if form.validate_on_submit():
+        cursor.execute("select attraction_id from attraction where name = %s", (form.attraction_review.data))
+        rows=cursor.fetchall()
+        session['attraction_id']=rows[0][0]
+        cursor.execute("insert into review (body,title,date,author_email,attraction_id) values (%s,%s,%s,%s,%s)", (form.review.data,form.title.data,form.date.data,session['user_email'],session['attraction_id']))
+        flash('Success')
+    return render_template('review.html', form=form)
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
