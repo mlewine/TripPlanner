@@ -3,6 +3,7 @@
 
 {% block content %}
 <h1>Welcome, {{session['user_name']}}!</h1>
+<<<<<<< HEAD
 	<h2>{{dbname}} Trips</h2>
 	<p>Click on a trip to see its activities and public transportation.</p>
 		
@@ -17,3 +18,17 @@
 	</ul>
 	{% endblock %}
 
+=======
+<table>
+  <tr>
+  </tr>
+  {% for rental in rentals %}
+    <tr>
+      {% for field in rental %}
+        <td>{{field}}</td>
+      {% endfor %}
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}
+>>>>>>> 47ee1973c80c8dc40796794c3ee411a749f178e8
