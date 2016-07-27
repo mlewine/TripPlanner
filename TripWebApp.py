@@ -83,20 +83,14 @@ def index():
 @app.route('/home')
 def home():
     cursor = db.cursor()
-    # cursor.execute(
-    #     "select rental_id, date(rental_date),  " +
-    #     "       date(rental_date + interval film.rental_duration day) as due_date, " +
-    #     "       film.title " +
-    #     "from rental join inventory using(inventory_id) " +
-    #     "            join film using (film_id) "+
-    #     "where customer_id = %s and return_date is null",
-    #     (session['customer_id']))
-    # Rental = namedtuple('Rental', ['rental_id', 'rental_date',
-    #                                'due_date', 'film_title'])
-    # rentals = [Rental._make(row) for row in cursor.fetchall()]
-    # cursor.close()
-    return render_template('home.html', customer=session['user_name'])
-    return render_template('home.html')
+    cursor.execute("select * from trip")
+    trip_rows = cursor.fetchall()
+    trip_column_names = [desc[0] for desc in cursor.description]
+    # cursor.execute("select * from " + public_transportation)
+    # pubtransport_rows = cursor.fetchall()
+    # pubtransport_column_names = [desc[0] for desc in cursor.description]
+    cursor.close()
+    return render_template('home.html', rows=trip_rows)
 
 @app.route('/browse_db')
 def browse_db():
@@ -131,6 +125,7 @@ def browsetrips(trip):
     cursor = db.cursor()
     cursor.execute("select * from " + trip)
     trip_rows = cursor.fetchall()
+    print(trip_rows)
     trip_column_names = [desc[0] for desc in cursor.description]
     # cursor.execute("select * from " + public_transportation)
     # pubtransport_rows = cursor.fetchall()
