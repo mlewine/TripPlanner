@@ -60,6 +60,20 @@ def index():
     form = LoginForm()
     if form.validate_on_submit():
         cursor = db.cursor()
+
+        # print("form.email.data=" + form.email.data)
+        cursor.execute("select user_email, name, password" +
+                       "from user where user_email = %s",
+                       (form.email.data,))
+        rows = cursor.fetchall()
+        if rows:
+            print("successful login")
+            session['user_name'] = rows[0][1]
+            session['email'] = rows[0][0]
+            # session['customer_name'] = "{} {}".format(rows[0][1], rows[0][2])
+            return redirect(url_for('home'))
+        else:
+            flash('Email address not found in customer database.')
         print("form.email.data=" + form.email.data)
         cursor.execute("select user_email,name from user where user_email = %s and password = %s;",
                        (form.email.data, form.password.data))
@@ -71,6 +85,7 @@ def index():
             return redirect(url_for('home'))
         else:
             flash('Email address and password not found in database.')
+>>>>>>> 79fc583ceacb46e74dd8cb8b109b79efa66f3c0a
             return redirect(url_for('index'))
     return render_template('index.html', form=form)
 
@@ -101,16 +116,8 @@ def browse_db():
     cursor.close()
     return render_template('browse_db.html', dbname=dbname, tables=tables)
 
-@app.route('/browse_db')
-def browse_attractions():
-    cursor = db.cursor()
-    cursor.execute("show tables")
-    tables = [field[0] for field in cursor.fetchall()[1:]]
-    cursor.close()
-    return render_template('browse_db.html', dbname=dbname, tables=tables)
-
-@app.route('/browse_db')
-def browse_activities():
+@app.route('/browse')
+def browse():
     cursor = db.cursor()
     cursor.execute("show tables")
     tables = [field[0] for field in cursor.fetchall()[1:]]
