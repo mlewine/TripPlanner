@@ -19,7 +19,7 @@ class RegistrationForm(Form):
     name = StringField('Name', validators=[Required()])
     email = StringField('Email address', validators=[Required()])
     password = PasswordField('Password', validators=[Required()])
-    name = StringField('Name on Credit Card', validators=[Required()])
+    name_CC = StringField('Name on Credit Card', validators=[Required()])
     ccnumber = StringField('Credit Card Number', validators=[Required()])
     card_expdate = StringField('Credit Card Expiration Date', validators=[Required()])
     cvv = StringField('CVV', validators=[Required()])
@@ -45,7 +45,12 @@ def register():
     form = RegistrationForm()
     cursor = db.cursor()
     if form.validate_on_submit():
-        cursor.execute("insert into user values (%s, %s, 0, 0, 1, %s)", (form.name.data, form.email.data, form.password.data) )
+        cursor.execute("insert into address (street_num, street, state, city, country, zip) values (%s, %s, %s, %s, %s, %s)", (form.street_num.data, form.street.data, form.state.data, form.city.data, form.country.data, form.zipcode.data) )
+        cursor.execute("select address_id from address where street_num = %s and street = %s and state = %s and city = %s and country =%s and zip =%s", (form.street_num.data, form.street.data, form.state.data, form.city.data, form.country.data, form.zipcode.data) )
+        rows=cursor.fetchall()
+        session['address_id'] = rows[0][0]
+        cursor.execute("insert into credit_card values (%s, %s, %s, %s,%s)", (form.name_CC.data,form.ccnumber.data,form.card_expdate.data, form.cvv.data, session['address_id']) )
+        cursor.execute("insert into user values (%s,%s, 0, 0, %s, %s)", (form.name.data, form.email.data, session['address_id'],form.password.data) )
         flash('Success!')
     # if request.method == 'POST' and form.validate():
     #     user = User()
