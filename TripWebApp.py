@@ -136,9 +136,8 @@ def browsetrips(trip):
     # pubtransport_rows = cursor.fetchall()
     # pubtransport_column_names = [desc[0] for desc in cursor.description]
     cursor.close()
-    return render_template('BrowseTrips.html', table=trip,
+    return render_template('home.html', table=trip,
                            columns=trip_column_names, rows=trip_rows)
-
 
 
 if __name__ == '__main__':
