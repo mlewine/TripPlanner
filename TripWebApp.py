@@ -70,7 +70,7 @@ def index():
             session['user_name'] = "{}".format(rows[0][1])
             return redirect(url_for('home'))
         else:
-            flash('Email address and password not found in customer database.')
+            flash('Email address and password not found in database.')
             return redirect(url_for('index'))
     return render_template('index.html', form=form)
 
