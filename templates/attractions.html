@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Viewing Attractions{{table}}{% endblock %}
+
+{% block content %}
+<!--<a href="/home">Back to table list</a>-->
+<h1>Viewing Attractions</h1>
+<table>
+
+  <tr>
+    <!--{% for column in columns %}
+      <th>{{column}}</th>
+    {% endfor %}-->
+
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+
+  </tr>
+
+  {% for row in rows %}
+    <tr>
+        <tr class="separator" />
+        
+      {% for cell in row %}
+      
+        <td>{{cell}}</td>
+        
+      {% endfor %}
+      <td><input type="submit" name="submit" value="Add to trip"><td>
+<!--       <td><button type="button">Add attraction to trip</button><td> -->
+    </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

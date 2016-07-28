@@ -10,11 +10,13 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard to guess string'
 bootstrap = Bootstrap(app)
 
+#Creates log in form
 class LoginForm(Form):
     email = StringField('Email address', validators=[Required()])
     password = PasswordField('Password')
     submit = SubmitField('Log in')
 
+#Creates registration form
 class RegistrationForm(Form):
     name = StringField('Name', validators=[Required()])
     email = StringField('Email address', validators=[Required()])
@@ -31,13 +33,20 @@ class RegistrationForm(Form):
     zipcode = StringField('Zipcode', validators=[Required()])
     submit = SubmitField('Register')
 
+#Create form to write a review
 class ReviewForm(Form):
     attraction_review=StringField('Attraction Name', validators=[Required()])
     title=StringField('Title of Review',validators=[Required()])
     review=StringField('Review', validators=[Required()])
     date=StringField('Date (yyyy-mm-dd)',validators=[Required()])
     submit = SubmitField('Submit')
-    
+
+class CreateTripForm(Form):
+    trip_city=StringField('City',validators=[Required()])
+    trip_start_date = StringField('Date (yyyy-mm-dd)',validators=[Required()]) 
+    submit = SubmitField('Submit')
+
+#Insert new user's information into the database    
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
@@ -58,6 +67,7 @@ def register():
     #     redirect('register')
     return render_template('register.html', form=form)
 
+#Insert review into database
 @app.route('/review', methods=['GET', 'POST'])
 def review():
     form=ReviewForm()
@@ -66,10 +76,24 @@ def review():
         cursor.execute("select attraction_id from attraction where name = %s", (form.attraction_review.data))
         rows=cursor.fetchall()
         session['attraction_id']=rows[0][0]
-        cursor.execute("insert into review (body,title,date,author_email,attraction_id) values (%s,%s,%s,%s,%s)", (form.review.data,form.title.data,form.date.data,session['user_email'],session['attraction_id']))
-        flash('Success')
+        cursor.execute("insert into review (body,title,date,author_email,attraction_id) values (%s,%s,%s,%s,%s)", (form.review.data,form.title.data,form.date.data,session['user_email'],session['attraction_id']) )
+        flash('Success!')
     return render_template('review.html', form=form)
 
+@app.route('/createtrip', methods=['GET', 'POST'])
+def createtrip():
+    form = CreateTripForm()
+    cursor = db.cursor()
+    if form.validate_on_submit(): 
+        cursor.execute("insert into trip (city,startdate,booked,user_email) values (%s,%s,'No',%s)", (form.trip_city.data,form.trip_start_date.data, session['user_email']) )
+        cursor.execute("select trip_id from trip where city = %s and startdate = %s and user_email = %s", form.trip_city.data,form.trip_start_date.data,session['user_email']) )
+        rows = cursor.fetchall()
+        session['trip_id']=rows[0][0]
+        flash ('Success!')
+    return render_template('createtrip.html', form=form)
+
+
+#Log into website or prevent logging in from wrong credentials
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = LoginForm()
@@ -89,7 +113,7 @@ def index():
             return redirect(url_for('index'))
     return render_template('index.html', form=form)
 
-
+#Create home page
 @app.route('/home')
 def home():
     cursor = db.cursor()
@@ -99,6 +123,7 @@ def home():
     cursor.close()
     return render_template('home.html', rows=trip_rows)
 
+#Create page to browse the database
 @app.route('/browse_db')
 def browse_db():
     cursor = db.cursor()
@@ -107,16 +132,18 @@ def browse_db():
     cursor.close()
     return render_template('browse_db.html', dbname=dbname, tables=tables)
 
-# @app.route('/attractions')
-# def browse():
-#     cursor = db.cursor()
-#     cursor.execute("select name, description, price from attraction")
-#     attractions = cursor.fetchall()
-#     column_names = [desc[0] for desc in cursor.description]
-#     cursor.close()
-#     return render_template('attractions.html', table=table,
-#                            columns=column_names, rows=attractions)
+#Create attraction page
+@app.route('/attractions')
+def browse():
+    cursor = db.cursor()
+    cursor.execute("select name, description, price from attraction")
+    attractions = cursor.fetchall()
+    column_names = [desc[0] for desc in cursor.description]
+    cursor.close()
+    return render_template('attractions.html', table=table,
+                           columns=column_names, rows=attractions)
 
+#Create trip page
 @app.route('/trips')
 def trips():
     cursor = db.cursor()
@@ -129,6 +156,7 @@ def trips():
     cursor.close()
     return render_template('trips.html', table=table,
         columns=column_names, rows=trips, acts=activities)
+
 
 @app.route('/table/<table>')
 def table(table):
@@ -161,13 +189,22 @@ def attractions(attraction):
     return render_template('attraction.html', attraction=attraction,
                            columns=column_names, rows=rows)
 
-
 if __name__ == '__main__':
     dbname = 'team5_schema'
     db = pymysql.connect(host='localhost',
                          user='root', passwd='', db=dbname)
     app.run(debug=True)
     db.close()
+
+#Add attractions to trip
+@app.route('/attractions')
+def contact():
+    if request.method == 'POST':
+        if request.form['submit'] == 'Add to trip':
+            cursor = db.cursor()
+            cursor.execute("insert into attraction (name, description, price) values (%s,%s,%s,%s,%s,%s,%s)", (session['attraction_id']))            
+    elif request.method == 'GET':
+        return render_template('contact.html', form=form)
 
 
 
