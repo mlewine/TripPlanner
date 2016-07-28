@@ -3,11 +3,11 @@
 
 {% block content %}
 <h1>{{session['attraction_name']}}</h1>
-	<h2>{{dbname}} Attraction Info</h2>
+	<h2>Attraction Info</h2>
 	<ul>
 	{% for attraction in rows %}
 	<table>
-		<li><a href="/attractions"></a></li>
+		<li><a href="/attractions/{{attraction[0]}}">{{attraction[0]}}</a></li>
 	{% endfor %}
 	</ul>
 	</table>

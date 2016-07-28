@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Table: {{attraction}}{% endblock %}
+
+{% block content %}
+<a href="/attractionpage">Back to attraction list</a>
+<h1>{{attraction}} Data</h1>
+
+<style type="text/css">
+td
+{
+    padding:10px 20px 20px 0px;
+}
+</style>
+<table>
+  <tr>
+    {% for column in columns %}
+      <th>{{column}}</th>
+    {% endfor %}
+  </tr>
+  {% for row in rows %}
+  
+    <tr>
+      
+      {% for cell in row %}
+        <td>{{cell}}</td>
+      {% endfor %}
+      
+    </tr>
+    
+  {% endfor %}
+</table>
+<a href="/attractionpage">Back to attraction list</a>
+{% endblock %}

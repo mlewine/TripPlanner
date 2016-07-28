@@ -107,15 +107,15 @@ def browse_db():
     cursor.close()
     return render_template('browse_db.html', dbname=dbname, tables=tables)
 
-@app.route('/attractions')
-def browse():
-    cursor = db.cursor()
-    cursor.execute("select name, description, price from attraction")
-    attractions = cursor.fetchall()
-    column_names = [desc[0] for desc in cursor.description]
-    cursor.close()
-    return render_template('attractions.html', table=table,
-                           columns=column_names, rows=attractions)
+# @app.route('/attractions')
+# def browse():
+#     cursor = db.cursor()
+#     cursor.execute("select name, description, price from attraction")
+#     attractions = cursor.fetchall()
+#     column_names = [desc[0] for desc in cursor.description]
+#     cursor.close()
+#     return render_template('attractions.html', table=table,
+#                            columns=column_names, rows=attractions)
 
 @app.route('/trips')
 def trips():
@@ -140,14 +140,26 @@ def table(table):
     return render_template('table.html', table=table,
                            columns=column_names, rows=rows)
 
-@app.route('/attractions')
+# Lists all attractions 
+@app.route('/attractionpage')
 def attractionpage():
     cursor = db.cursor()
-    cursor.execute("select * from attraction")
+    cursor.execute("select name from attraction")
     rows = cursor.fetchall()
     column_names =[desc[0] for desc in cursor.description]
     cursor.close()
-    return renter_template('attractionpage.html', columns=column_names, rows=rows)
+    return render_template('attractionpage.html', columns=column_names, rows=rows)
+
+# Lists attributes of a single attraction
+@app.route('/attractions/<attraction>')
+def attractions(attraction):
+    cursor = db.cursor()
+    cursor.execute("select description, price, requires_reservation from attraction where name = '" + attraction + "'")
+    rows = cursor.fetchall()
+    column_names = [desc[0] for desc in cursor.description]
+    cursor.close()
+    return render_template('attraction.html', attraction=attraction,
+                           columns=column_names, rows=rows)
 
 
 if __name__ == '__main__':
