@@ -196,7 +196,7 @@ def attractions(attraction):
     cursor.close()
     cursor.close()
     return render_template('attraction.html', attraction=attraction,
-                           columns=column_names, rows=rows)
+                           columns=column_names, rows=rows, form=form)
 
 if __name__ == '__main__':
     dbname = 'team5_schema'

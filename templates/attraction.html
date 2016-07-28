@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+
+
 {% block title %}Table: {{attraction}}{% endblock %}
 
 {% block content %}
@@ -30,4 +32,6 @@ td
   {% endfor %}
 </table>
 <a href="/attractionpage">Back to attraction list</a>
+{% import "bootstrap/wtf.html" as wtf %}
+{{ wtf.quick_form(form) }}
 {% endblock %}
