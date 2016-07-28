@@ -10,11 +10,13 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard to guess string'
 bootstrap = Bootstrap(app)
 
+#Creates log in form
 class LoginForm(Form):
     email = StringField('Email address', validators=[Required()])
     password = PasswordField('Password')
     submit = SubmitField('Log in')
 
+#Creates registration form
 class RegistrationForm(Form):
     name = StringField('Name', validators=[Required()])
     email = StringField('Email address', validators=[Required()])
@@ -31,13 +33,15 @@ class RegistrationForm(Form):
     zipcode = StringField('Zipcode', validators=[Required()])
     submit = SubmitField('Register')
 
+#Create form to write a review
 class ReviewForm(Form):
     attraction_review=StringField('Attraction Name', validators=[Required()])
     title=StringField('Title of Review',validators=[Required()])
     review=StringField('Review', validators=[Required()])
     date=StringField('Date (yyyy-mm-dd)',validators=[Required()])
     submit = SubmitField('Submit')
-    
+
+#Insert new user's information into the database    
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
@@ -58,6 +62,7 @@ def register():
     #     redirect('register')
     return render_template('register.html', form=form)
 
+#Insert review into database
 @app.route('/review', methods=['GET', 'POST'])
 def review():
     form=ReviewForm()
@@ -70,6 +75,7 @@ def review():
         flash('Success')
     return render_template('review.html', form=form)
 
+#Log into website or prevent logging in from wrong credentials
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = LoginForm()
@@ -89,7 +95,7 @@ def index():
             return redirect(url_for('index'))
     return render_template('index.html', form=form)
 
-
+#Create home page
 @app.route('/home')
 def home():
     cursor = db.cursor()
@@ -99,6 +105,7 @@ def home():
     cursor.close()
     return render_template('home.html', rows=trip_rows)
 
+#Create page to browse the database
 @app.route('/browse_db')
 def browse_db():
     cursor = db.cursor()
@@ -107,6 +114,7 @@ def browse_db():
     cursor.close()
     return render_template('browse_db.html', dbname=dbname, tables=tables)
 
+#Create attraction page
 @app.route('/attractions')
 def browse():
     cursor = db.cursor()
@@ -117,6 +125,7 @@ def browse():
     return render_template('attractions.html', table=table,
                            columns=column_names, rows=attractions)
 
+#Create trip page
 @app.route('/trips')
 def trips():
     cursor = db.cursor()
@@ -126,6 +135,7 @@ def trips():
     cursor.close()
     return render_template('trips.html', table=table,
         columns=column_names, rows=trips)
+
 
 @app.route('/table/<table>')
 def table(table):
@@ -137,6 +147,7 @@ def table(table):
     return render_template('table.html', table=table,
                            columns=column_names, rows=rows)
 
+#Creates pages for individual attractions
 @app.route('/attractions')
 def attractionpage():
     cursor = db.cursor()
@@ -153,6 +164,7 @@ if __name__ == '__main__':
     app.run(debug=True)
     db.close()
 
+#Add attractions to trip
 @app.route('/attractions')
 def contact():
     if request.method == 'POST':
