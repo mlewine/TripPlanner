@@ -38,15 +38,6 @@ class ReviewForm(Form):
     date=StringField('Date (yyyy-mm-dd)',validators=[Required()])
     submit = SubmitField('Submit')
     
-class TripForm(Form):
-    pass
-
-class ActivityForm(Form):
-    pass
-
-class AttractionForm(Form):
-    pass
-    
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
@@ -78,7 +69,6 @@ def review():
         cursor.execute("insert into review (body,title,date,author_email,attraction_id) values (%s,%s,%s,%s,%s)", (form.review.data,form.title.data,form.date.data,session['user_email'],session['attraction_id']))
         flash('Success')
     return render_template('review.html', form=form)
-
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -126,6 +116,15 @@ def browse():
     cursor.close()
     return render_template('attractions.html', table=table,
                            columns=column_names, rows=attractions)
+
+@app.route('/BrowseTrips')
+def browse_trips():
+    cursor = db.cursor()
+    cursor.execute("select city, date from trip")
+    trips = cursor.fetchall()
+    column_names = [desc[0] for desc in cursor.description]
+    cursor.close()
+    return render_template('BrowseTrips.html', columns=column_names, rows=trips)
 
 @app.route('/table/<table>')
 def table(table):

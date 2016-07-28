@@ -2,20 +2,12 @@
 {% block title %}Viewing Trips{{table}}{% endblock %}
 
 {% block content %}
-<!--<a href="/home">Back to table list</a>-->
-<h1>Viewing Attractions</h1>
+<h1>Trips</h1>
 <table>
-
   <tr>
-    <!--{% for column in columns %}
-      <th>{{column}}</th>
-    {% endfor %}-->
-
     <th>City</th>
     <th>Date</th>
-
   </tr>
-
   {% for row in rows %}
     <tr>
         <tr class="separator" />
@@ -29,5 +21,4 @@
     </tr>
   {% endfor %}
 </table>
-
 {% endblock %}
