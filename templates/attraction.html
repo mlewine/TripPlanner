@@ -39,10 +39,11 @@ td
 <h2>Activities here</h2>
 
   {% for name in activitynames %}
-      <a href="./{{name[0]}}">{{name[0]}}</a>
+      <a href="/activities/{{name[0]}}">{{name[0]}}</a>
       <br>
   {% endfor %}
   <br><br>
 <a href="/attractionpage">Back to attraction list</a>
 {% import "bootstrap/wtf.html" as wtf %}
 {% endblock %}
+")
