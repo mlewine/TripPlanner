@@ -47,6 +47,11 @@ class CreateTripForm(Form):
     trip_start_date = StringField('Date (yyyy-mm-dd)',validators=[Required()]) 
     submit = SubmitField('Submit')
 
+class ViewTripForm(Form):
+    view_trip_city = SelectField(u'City of Trip', choices=[('Metz','Metz'), ('Paris','Paris'), ('Rome','Rome')],validators=[Required()])
+    view_trip_date= StringField('Start Date of Trip (yyyy-mm-dd)',validators=[Required()])
+    view_trip=SubmitField('View Trip')
+
 #Insert new user's information into the database    
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -106,6 +111,25 @@ def createtrip():
         session['trip_id']=rows[0][0]
         flash ('Success!')
     return render_template('createtrip.html', form=form)
+
+@app.route('/viewtrip', methods=['GET', 'POST'])
+def viewtrip():
+    form = ViewTripForm()
+    cursor = db.cursor()
+    if form.validate_on_submit(): 
+        cursor.execute("select trip_id from trip where city = %s and startdate= %s and user_email = %s",(form.view_trip_city.data,form.view_trip_date.data,session['user_email']))
+        rows=cursor.fetchall()
+        print(rows)
+        session['tripid'] = rows[0]
+        flash('Success!')
+    return render_template('viewtrip2.html', form=form, rows=rows)
+
+@app.route('/viewtrip2', methods=['GET', 'POST'])
+def viewtrip2():
+    cursor=db.cursor()
+    cursor.execute("select name, reservationnumber, startdatetime, enddatetime from activity where trip_id = %s", (session['tripid']))
+    return render_template ('viewtrip2.html')
+
 
 
 #Log into website or prevent logging in from wrong credentials
