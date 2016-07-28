@@ -244,6 +244,25 @@ def attractions(attraction):
     return render_template('attraction.html', attraction=attraction,
                            columns=column_names, rows=rows, activitynames=activitynames, url=url)
 
+class AddActivityForm(Form):
+    starttime = StringField('Start time YYYY-MM-DD HH:MM')
+    endtime = StringField('End Time YYYY-MM-DD HH:MM')
+    submit = SubmitField('Add activity to trip')
+
+@app.route('/activities/<activity>')
+def activity(activity):
+    form = AddActivityForm()
+    cursor = db.cursor()
+
+    cursor.execute("select attraction.name from attraction join activity using (attraction_id) where activity.name = %s", (activity))
+    attraction = cursor.fetchall()
+    print("Attraction isssssss" + attraction[0][0])
+    cursor.execute("select city from address join attraction using (address_id) where attraction.name = %s", (attraction[0][0]))
+    city = cursor.fetchall()
+    return render_template('addactivity.html', form=form, activity=activity, attraction=attraction, city=city)
+
+
+
 if __name__ == '__main__':
     dbname = 'team5_schema'
     db = pymysql.connect(host='localhost',

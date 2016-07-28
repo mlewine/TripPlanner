@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<h1>Add activity "{{activity}}" to your trip</h1>
+<h2>{{attraction[0][0]}} in {{city[0][0]}}</h2>
+{% import "bootstrap/wtf.html" as wtf %}
+{{ wtf.quick_form(form) }}
+{% endblock %}
