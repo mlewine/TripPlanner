@@ -151,7 +151,7 @@ def index():
             print("successful login")
             session['user_email'] = rows[0][0]
             session['user_name'] = "{}".format(rows[0][1])
-            return redirect(url_for('home'))
+            return redirect(url_for('viewtrip'))
         else:
             flash('Email address and password not found in database.')
             return redirect(url_for('index'))
