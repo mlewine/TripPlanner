@@ -1,18 +1,28 @@
 {% extends "base.html" %}
-{% block title %}Viewing Trips{{table}}{% endblock %}
+{% block title %}Viewing Trips{% endblock %}
 
 {% block content %}
 <h1>Your Trips</h1>
+
+
 <table>
   <tr>
     <th>Date</th>
     <th>City</th>
   </tr>
 	<ul>
+
+		<style type="text/css">
+td
+{
+    padding:10px 20px 20px 0px;
+}
+</style>
 	{% if rows %} 
 		{% for trip in rows %}
 			{% if trip[4] == session['user_email']%}
 				  <tr>
+
 				    <td>{{trip[2]}}</td>
 				    <td>{{trip[1]}}</td>
 				  </tr>

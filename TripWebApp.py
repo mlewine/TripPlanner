@@ -124,7 +124,7 @@ def trips():
     trips = cursor.fetchall()
     column_names = [desc[0] for desc in cursor.description]
     cursor.close()
-    return render_template('BrowseTrips.html', table=table,
+    return render_template('trips.html', table=table,
         columns=column_names, rows=trips)
 
 @app.route('/table/<table>')
