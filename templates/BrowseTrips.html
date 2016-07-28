@@ -12,14 +12,10 @@
 	{% if rows %} 
 		{% for trip in rows %}
 			{% if trip[4] == session['user_email']%}
-				<table>
 				  <tr>
-				    <th>{{trip[1]}}</th>
-				    	<tr class="separator"/>
-				    <th>{{trip[2]}}</th>
-				    	<tr class="separator"/>
+				    <td>{{trip[1]}}</td>
+				    <td>{{trip[2]}}</td>
 				  </tr>
-				</table>
 			{% endif %}
 		{% endfor %}
 	{% endif %}
