@@ -1,8 +1,54 @@
 {% extends "base.html" %}
-{% block title %}Review{% endblock %}
+{% block title %}Viewing Trips{% endblock %}
 
 {% block content %}
-<h1>View Trip</h1>
-{% import "bootstrap/wtf.html" as wtf %}
-{{ wtf.quick_form(form) }}
+<h1>Your Trip</h1>
+
+
+<table>
+	<ul>
+
+		<style type="text/css">
+td
+{
+    padding:10px 20px 20px 0px;
+}
+</style>
+	<ul>
+	{% if rows %} 
+		{% for trip in rows %}
+			{% if trip[4] == session['user_email']%}
+				<table>
+				  <tr>
+				    <th>City: </th>
+				    	<tr class="separator"/>
+				    <th>Date: </th>
+				    	<tr class="separator"/>
+				    <th>Have you booked the trip? {{trip[3]}}!</th>
+				    	<tr class="separator"/>
+				  </tr>
+				</table>
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+	</ul>
+	<ul>
+	{% if acts %} 
+		{% for activity in acts %}
+				<table>
+				  <tr>
+				    <th>{{viewtrip[0]}}</th>
+				    	<tr class="separator"/>
+				    <th>{{viewtrip[1]}}</th>
+				    	<tr class="separator"/>
+				    <th>{{viewtrip[2]}}</th>
+				    	<tr class="separator"/>
+				    <th>{{viewtrip[3]}}</th>
+				    	<tr class="separator"/>
+				  </tr>
+				</table>
+		{% endfor %}
+	{% endif %}
+	</ul>
+	</table>
 {% endblock %}

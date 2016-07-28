@@ -117,13 +117,16 @@ def viewtrip():
         print(rows)
         session['tripid'] = rows[0]
         flash('Success!')
-    return render_template('viewtrip2.html', form=form, rows=rows)
+    return render_template('viewtrip.html', form=form)
 
 @app.route('/viewtrip2', methods=['GET', 'POST'])
 def viewtrip2():
     cursor=db.cursor()
     cursor.execute("select name, reservationnumber, startdatetime, enddatetime from activity where trip_id = %s", (session['tripid']))
-    return render_template ('viewtrip2.html')
+    viewtrip=cursor.fetchall()
+    column_names = [desc[0] for desc in cursor.description]
+    return render_template ('viewtrip2.html',table=table,
+        columns=column_names, rows=viewtrip)
 
 
 
