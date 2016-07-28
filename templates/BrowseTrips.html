@@ -2,23 +2,29 @@
 {% block title %}Viewing Trips{{table}}{% endblock %}
 
 {% block content %}
-<h1>Trips</h1>
+<h1>Your Trips</h1>
 <table>
   <tr>
     <th>City</th>
     <th>Date</th>
   </tr>
-  {% for row in rows %}
-    <tr>
-        <tr class="separator" />
-        
-      {% for cell in row %}
-      
-        <td>{{cell}}</td>
-        
-      {% endfor %}
-      <td><button type="button">View activities</button><td>
+	<ul>
+	{% if rows %} 
+		{% for trip in rows %}
+			{% if trip[4] == session['user_email']%}
+				<table>
+				  <tr>
+				    <th>{{trip[1]}}</th>
+				    	<tr class="separator"/>
+				    <th>{{trip[2]}}</th>
+				    	<tr class="separator"/>
+				  </tr>
+				</table>
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+	</ul>
+	</table>
     </tr>
-  {% endfor %}
 </table>
 {% endblock %}

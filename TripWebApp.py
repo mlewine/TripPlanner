@@ -120,7 +120,7 @@ def browse():
 @app.route('/trips')
 def trips():
     cursor = db.cursor()
-    cursor.execute("select city, startdate from trip")
+    cursor.execute("select * from trip")
     trips = cursor.fetchall()
     column_names = [desc[0] for desc in cursor.description]
     cursor.close()
