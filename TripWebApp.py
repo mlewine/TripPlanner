@@ -206,6 +206,9 @@ def attractions(attraction):
     rows = cursor.fetchall()
     column_names = [desc[0] for desc in cursor.description]
     form = AddAttractionForm()
+    cursor.execute("select photo_url from attraction where name = '" + attraction + "'")
+    url=cursor.fetchall()
+    url=url[0][0]
     if form.validate_on_submit():
         cursor.execute("insert into activity (activity_id, attraction_id, name) values (%s, %s, %s)")
         rows2=cursor.fetchall()
@@ -213,7 +216,7 @@ def attractions(attraction):
     cursor.close()
     cursor.close()
     return render_template('attraction.html', attraction=attraction,
-                           columns=column_names, rows=rows, form=form)
+                           columns=column_names, rows=rows, form=form, url=url)
 
 if __name__ == '__main__':
     dbname = 'team5_schema'
