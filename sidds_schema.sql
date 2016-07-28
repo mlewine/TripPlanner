@@ -57,6 +57,7 @@ create table if not exists attraction (
   price float, 
   quantity int,
   requires_reservation bit,
+  photo_url varchar(128),
   foreign key(address_id) references address(address_id)
   ON DELETE SET NULL
 );
