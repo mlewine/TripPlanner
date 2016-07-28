@@ -35,14 +35,15 @@ class RegistrationForm(Form):
 
 #Create form to write a review
 class ReviewForm(Form):
-    attraction_review=SelectField(u'Attraction Name', choices=[('Metz Cathedral','Metz Cathedral'), ('Centre Pompidou-Metz','Centre Pompidou-Metz'), ('Museums of Metz','Museums of Metz'),('Eiffel Tower','Eiffel Tower'),('Louvre','Louvre'),('Notre Dame','Notre Dame'),('58 Tour Eiffel','58 Tour Eiffel'),('Brunch boat cruise','Brunch boat cruise'),('Colosseum','Colosseum'),('Pantheon','Pantheon'),('Trevi Fountain','Trevi Fountain')], validators=[Required()])
+    attraction_review=SelectField('Attraction Name', choices=[('Metz Cathedral','Metz Cathedral'), ('Centre Pompidou-Metz','Centre Pompidou-Metz'), ('Museums of Metz','Museums of Metz'),('Eiffel Tower','Eiffel Tower'),('Louvre','Louvre'),('Notre Dame','Notre Dame'),('58 Tour Eiffel','58 Tour Eiffel'),('Brunch boat cruise','Brunch boat cruise'),('Colosseum','Colosseum'),('Pantheon','Pantheon'),('Trevi Fountain','Trevi Fountain')], validators=[Required()])
     title=StringField('Title of Review',validators=[Required()])
     review=StringField('Review', validators=[Required()])
     date=StringField('Date (yyyy-mm-dd)',validators=[Required()])
     submit = SubmitField('Submit')
 
+#Create a trip
 class CreateTripForm(Form):
-    trip_city=SelectField(u'City', choices=[('Metz','Metz'), ('Paris','Paris'), ('Rome','Rome')],validators=[Required()])
+    trip_city = SelectField(u'City', choices=[('Metz','Metz'), ('Paris','Paris'), ('Rome','Rome')],validators=[Required()])
     trip_start_date = StringField('Date (yyyy-mm-dd)',validators=[Required()]) 
     submit = SubmitField('Submit')
 
