@@ -25,6 +25,11 @@ td
 
 				    <td>{{trip[2]}}</td>
 				    <td>{{trip[1]}}</td>
+						{% for activities in acts %}
+						      {% for cell in activities %}
+        							<td>{{cell}}</td>
+     			 				{% endfor %}
+						{% endfor %}
 				  </tr>
 			{% endif %}
 			</tr>
