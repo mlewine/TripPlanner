@@ -1,13 +1,33 @@
-{% extends "home.html" %}
-{% block title %}Browse Trips{% endblock %}
+{% extends "base.html" %}
+{% block title %}Viewing Trips{{table}}{% endblock %}
 
 {% block content %}
-<h1>{{dbname}} Trips</h1>
-<p>Click on a trip to see its activities and public transportation.</p>
-<ul>
-  {% for table in tables %}
-    <li><a href="/table/{{table}}">{{table}}</a></li>
+<!--<a href="/home">Back to table list</a>-->
+<h1>Viewing Attractions</h1>
+<table>
+
+  <tr>
+    <!--{% for column in columns %}
+      <th>{{column}}</th>
+    {% endfor %}-->
+
+    <th>City</th>
+    <th>Date</th>
+
+  </tr>
+
+  {% for row in rows %}
+    <tr>
+        <tr class="separator" />
+        
+      {% for cell in row %}
+      
+        <td>{{cell}}</td>
+        
+      {% endfor %}
+      <td><button type="button">View activities</button><td>
+    </tr>
   {% endfor %}
-</ul>
 </table>
+
 {% endblock %}
