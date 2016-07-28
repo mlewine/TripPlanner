@@ -114,19 +114,26 @@ def viewtrip():
     if form.validate_on_submit(): 
         cursor.execute("select trip_id from trip where city = %s and startdate= %s and user_email = %s",(form.view_trip_city.data,form.view_trip_date.data,session['user_email']))
         rows=cursor.fetchall()
-        print(rows)
-        session['tripid'] = rows[0]
-        flash('Success!')
+        if rows:
+            session['tripid'] = rows[0][0]
+            flash('Success!')
+            return redirect(url_for('viewtrip2'))
+        else:
+            flash('City and Start Date do not match')
+            return redirect(url_for('viewtrip'))
+
     return render_template('viewtrip.html', form=form)
 
 @app.route('/viewtrip2', methods=['GET', 'POST'])
 def viewtrip2():
     cursor=db.cursor()
+    cursor.execute("select * from trip")
+    trips = cursor.fetchall()
     cursor.execute("select name, reservationnumber, startdatetime, enddatetime from activity where trip_id = %s", (session['tripid']))
     viewtrip=cursor.fetchall()
     column_names = [desc[0] for desc in cursor.description]
     return render_template ('viewtrip2.html',table=table,
-        columns=column_names, rows=viewtrip)
+        columns=column_names, rows=trips, vt= viewtrip)
 
 
 
