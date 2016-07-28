@@ -79,9 +79,6 @@ def review():
         session['attraction_id']=rows[0][0]
         cursor.execute("select attraction.name from attraction join activity using (attraction_id) join trip using (trip_id) where user_email=%s",(session['user_email']))
         rows=cursor.fetchall()
-        for x in rows:
-            for y in x:
-                print (y)
         if rows:
             for x in rows:
                 for y in x: 
@@ -167,8 +164,7 @@ def trips():
     cursor = db.cursor()
     cursor.execute("select * from trip")
     trips = cursor.fetchall()
-    cursor.execute("select activity.reservationnumber, activity.name, activity.startdatetime, activity.enddatetime"
-                    + " from activity join trip using (trip_id) where trip_id = activity.trip_id")
+    cursor.execute("select activity.reservationnumber, activity.name, activity.startdatetime, activity.enddatetime activity join trip using (trip_id) where trip_id = activity.trip_id")
     activities = cursor.fetchall()
     column_names = [desc[0] for desc in cursor.description]
     cursor.close()
