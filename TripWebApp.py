@@ -140,6 +140,15 @@ def table(table):
     return render_template('table.html', table=table,
                            columns=column_names, rows=rows)
 
+@app.route('/attractions')
+def attractionpage():
+    cursor = db.cursor()
+    cursor.execute("select * from attraction")
+    rows = cursor.fetchall()
+    column_names =[desc[0] for desc in cursor.description]
+    cursor.close()
+    return renter_template('attractionpage.html', columns=column_names, rows=rows)
+
 
 if __name__ == '__main__':
     dbname = 'team5_schema'

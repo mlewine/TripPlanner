@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Attraction{{session['user_name']}}{% endblock %}
+
+{% block content %}
+<h1>{{session['attraction_name']}}</h1>
+	<h2>{{dbname}} Attraction Info</h2>
+	<ul>
+	{% for attraction in rows %}
+	<table>
+		<li><a href="/attractions"></a></li>
+	{% endfor %}
+	</ul>
+	</table>
+<!-- 	<h3>{{dbname}} Reviews</h3>
+	<ul> -->
+
+{% endblock %}
