@@ -253,15 +253,18 @@ class AddActivityForm(Form):
 def activity(activity):
     form = AddActivityForm()
     cursor = db.cursor()
-
+    cursor.execute("select * from activity where name = %s", (activity))
+    activity = cursor.fetchall()
     cursor.execute("select attraction.name from attraction join activity using (attraction_id) where activity.name = %s", (activity))
     attraction = cursor.fetchall()
-    print("Attraction isssssss" + attraction[0][0])
     cursor.execute("select city from address join attraction using (address_id) where attraction.name = %s", (attraction[0][0]))
     city = cursor.fetchall()
+    
+
+    if form.validate_on_submit():
+        cursor.execite("insert into activity ")
+
     return render_template('addactivity.html', form=form, activity=activity, attraction=attraction, city=city)
-
-
 
 if __name__ == '__main__':
     dbname = 'team5_schema'
@@ -270,6 +273,5 @@ if __name__ == '__main__':
     app.run(debug=True)
     db.close()
 
-  
 
 
