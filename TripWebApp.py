@@ -150,7 +150,7 @@ def trips():
     cursor.execute("select * from trip")
     trips = cursor.fetchall()
     cursor.execute("select activity.reservationnumber, activity.name, activity.startdatetime, activity.enddatetime"
-                    + " from activity join trip using (trip_id) where trip.activity_id = activity.activity_id")
+                    + " from activity join trip using (trip_id) where trip_id = activity.trip_id")
     activities = cursor.fetchall()
     column_names = [desc[0] for desc in cursor.description]
     cursor.close()
@@ -197,15 +197,18 @@ if __name__ == '__main__':
     db.close()
 
 #Add attractions to trip
-@app.route('/attractions')
-def contact():
-    if request.method == 'POST':
-        if request.form['submit'] == 'Add to trip':
-            cursor = db.cursor()
-            cursor.execute("insert into attraction (name, description, price) values (%s,%s,%s,%s,%s,%s,%s)", (session['attraction_id']))            
-    elif request.method == 'GET':
-        return render_template('contact.html', form=form)
-
+class AddAttractionForm(Form):
+    submit = SubmitField('Add Attraction to Trip')
+  
+@app.route('/attractionpage', methods=['GET', 'POST'])
+def AddAttraction():
+    form = AddAttractionForm()
+    cursor = db.cursor()
+    if form.validate_on_submit():
+        cursor.execute("insert into attraction (attraction_id, name, description, address_id, price, quantity) values (%s, %s, %s, %s, %s, %s)")
+        rows=cursor.fetchall()
+        session['attraction_id'] = rows[0][0]
+    return render_template('attractions.html', form=form)
 
 
 
