@@ -78,14 +78,20 @@ def review():
         session['attraction_id']=rows[0][0]
         cursor.execute("select attraction.name from attraction join activity using (attraction_id) join trip using (trip_id) where user_email=%s",(session['user_email']))
         rows=cursor.fetchall()
+        for x in rows:
+            for y in x:
+                print (y)
         if rows:
             for x in rows:
-                if x == form.attraction_review.data:
-                    cursor.execute("insert into review (body,title,date,author_email,attraction_id) values (%s,%s,%s,%s,%s)", (form.review.data,form.title.data,form.date.data,session['user_email'],session['attraction_id']) )
-                    flash('Success!')
-                else:
-                    flash("You did not go to this attraction")
-                    return redirect(url_for('review'))
+                for y in x: 
+                    if form.attraction_review.data in y:                
+                        cursor.execute("insert into review (body,title,date,author_email,attraction_id) values (%s,%s,%s,%s,%s)", (form.review.data,form.title.data,form.date.data,session['user_email'],session['attraction_id']) )
+                        flash('Success!')
+                        return redirect(url_for('review'))
+
+                    else:   
+                        flash("You did not go to this attraction")
+                        return redirect(url_for('review'))
         else:
             flash("You did not go to any attraction")
         # If user had this attraction in their trip
