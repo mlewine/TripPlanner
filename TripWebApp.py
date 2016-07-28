@@ -2,7 +2,7 @@ from collections import namedtuple
 from flask import Flask, render_template, session, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_wtf import Form
-from wtforms import StringField, SubmitField, BooleanField, validators, PasswordField
+from wtforms import StringField, SubmitField, BooleanField, validators, PasswordField, SelectField
 from wtforms.validators import Required
 import pymysql
 
@@ -42,7 +42,7 @@ class ReviewForm(Form):
     submit = SubmitField('Submit')
 
 class CreateTripForm(Form):
-    trip_city=StringField('City',validators=[Required()])
+    trip_city=SelectField(u'Programming Language', choices=[('Metz','Metz'), ('Paris','Paris'), ('Rome','Rome')])
     trip_start_date = StringField('Date (yyyy-mm-dd)',validators=[Required()]) 
     submit = SubmitField('Submit')
 
