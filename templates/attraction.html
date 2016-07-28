@@ -33,7 +33,16 @@ td
     </tr>
     
   {% endfor %}
+
+
 </table>
+<h2>Activities here</h2>
+
+  {% for name in activitynames %}
+      <a href="/name">{{name}}[0]</a>
+      hello
+  {% endfor %}
+  <br><br>
 <a href="/attractionpage">Back to attraction list</a>
 {% import "bootstrap/wtf.html" as wtf %}
 {{ wtf.quick_form(form) }}
