@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Home for {{customer}}{% endblock %}
+{% block title %}Home for {{session['user_name']}}{% endblock %}
 
 {% block content %}
 <h1>Welcome, {{session['user_name']}}!</h1>
