@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Home for {{session['user_name']}}{% endblock %}
+
+{% block content %}
+<h1>Welcome, {{session['user_name']}}!</h1>
+	<h2>{{dbname}} Your Upcoming Trips</h2>
+	<ul>
+	{% if rows %} 
+		{% for trip in rows %}
+			{% if trip[4] == session['user_email']%}
+				<table>
+				  <tr>
+				    <th>{{trip[1]}}</th>
+				    	<tr class="separator"/>
+				    <th>{{trip[2]}}</th>
+				    	<tr class="separator"/>
+				    <td><button type="button">View Trip Details</button><td>
+				  </tr>
+				</table>
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+	</ul>
+	</table>
+{% endblock %}
+
