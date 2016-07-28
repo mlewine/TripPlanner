@@ -41,15 +41,12 @@ class ReviewForm(Form):
     date=StringField('Date (yyyy-mm-dd)',validators=[Required()])
     submit = SubmitField('Submit')
 
-<<<<<<< HEAD
 class CreateTripForm(Form):
     trip_city=StringField('City',validators=[Required()])
     trip_start_date = StringField('Date (yyyy-mm-dd)',validators=[Required()]) 
     submit = SubmitField('Submit')
 
-=======
 #Insert new user's information into the database    
->>>>>>> debd208fafef5f87b587e72531cc22188d90e26b
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
@@ -83,19 +80,20 @@ def review():
         flash('Success!')
     return render_template('review.html', form=form)
 
-<<<<<<< HEAD
 @app.route('/createtrip', methods=['GET', 'POST'])
 def createtrip():
     form = CreateTripForm()
     cursor = db.cursor()
     if form.validate_on_submit(): 
         cursor.execute("insert into trip (city,startdate,booked,user_email) values (%s,%s,'No',%s)", (form.trip_city.data,form.trip_start_date.data, session['user_email']) )
+        cursor.execute("select trip_id from trip where city = %s and startdate = %s and user_email = %s", form.trip_city.data,form.trip_start_date.data,session['user_email']) )
+        rows = cursor.fetchall()
+        session['trip_id']=rows[0][0]
         flash ('Success!')
     return render_template('createtrip.html', form=form)
 
-=======
+
 #Log into website or prevent logging in from wrong credentials
->>>>>>> debd208fafef5f87b587e72531cc22188d90e26b
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = LoginForm()
