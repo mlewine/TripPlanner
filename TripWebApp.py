@@ -41,7 +41,7 @@ class ReviewForm(Form):
     date=StringField('Date (yyyy-mm-dd)',validators=[Required()])
     submit = SubmitField('Submit')
 
-#Create a trip
+#Creates a form that allow's user to create a trip
 class CreateTripForm(Form):
     trip_city = SelectField(u'City', choices=[('Metz','Metz'), ('Paris','Paris'), ('Rome','Rome')],validators=[Required()])
     trip_start_date = StringField('Date (yyyy-mm-dd)',validators=[Required()]) 
@@ -65,12 +65,6 @@ def register():
         cursor.execute("insert into credit_card values (%s, %s, %s, %s,%s)", (form.name_CC.data,form.ccnumber.data,form.card_expdate.data, form.cvv.data, session['address_id']) )
         cursor.execute("insert into user values (%s,%s, 0, 0, %s, %s)", (form.name.data, form.email.data, session['address_id'],form.password.data) )
         flash('Success!')
-    # if request.method == 'POST' and form.validate():
-    #     user = User()
-    #     user.name = form.name.data
-    #     user.email = form.email.data
-    #     user.save()
-    #     redirect('register')
     return render_template('register.html', form=form)
 
 #Insert review into database
@@ -100,6 +94,7 @@ def review():
         # If user had this attraction in their trip
     return render_template('review.html', form=form)
 
+#Allows user to create a trip
 @app.route('/createtrip', methods=['GET', 'POST'])
 def createtrip():
     form = CreateTripForm()
@@ -195,7 +190,7 @@ def trips():
     return render_template('trips.html', table=table,
         columns=column_names, rows=trips, acts=activities)
 
-
+#Allows users to click on and view each table under "Explore DB"
 @app.route('/table/<table>')
 def table(table):
     cursor = db.cursor()
@@ -247,15 +242,5 @@ if __name__ == '__main__':
     db.close()
 
   
-# @app.route('/attractionpage', methods=['GET', 'POST'])
-# def AddAttraction():
-#     form = AddAttractionForm()
-#     cursor = db.cursor()
-#     if form.validate_on_submit():
-#         cursor.execute("insert into trip (attraction_id, name, description, address_id, price, quantity) values (%s, %s, %s, %s, %s, %s)")
-#         rows=cursor.fetchall()
-#         session['attraction_id'] = rows[0][0]
-#     return render_template('attractions.html', form=form)
-
 
 
