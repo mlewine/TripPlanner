@@ -3,17 +3,24 @@
 
 {% block content %}
 <h1>Welcome, {{session['user_name']}}!</h1>
-	<h2>{{dbname}} Trips</h2>
-	<p>Click on a trip to see its activities and public transportation.</p>
-		
+	<h2>{{dbname}} Your Upcoming Trips</h2>
 	<ul>
 	{% if rows %} 
 		{% for trip in rows %}
 			{% if trip[4] == session['user_email']%}
-		    	<li><p>{{trip[1]}}</p>
+				<table>
+				  <tr>
+				    <th>{{trip[1]}}</th>
+				    	<tr class="separator"/>
+				    <th>{{trip[2]}}</th>
+				    	<tr class="separator"/>
+				    <td><button type="button">View Trip Details</button><td>
+				  </tr>
+				</table>
 			{% endif %}
 		{% endfor %}
 	{% endif %}
 	</ul>
+	</table>
 {% endblock %}
 
