@@ -168,6 +168,10 @@ def table(table):
     return render_template('table.html', table=table,
                            columns=column_names, rows=rows)
 
+#Add attractions to trip
+class AddAttractionForm(Form):
+    submit = SubmitField('Add Attraction to Trip')
+
 # Lists all attractions 
 @app.route('/attractionpage')
 def attractionpage():
@@ -175,6 +179,11 @@ def attractionpage():
     cursor.execute("select name from attraction")
     rows = cursor.fetchall()
     column_names =[desc[0] for desc in cursor.description]
+    form = AddAttractionForm()
+    if form.validate_on_submit():
+        cursor.execute("insert into activity (activity_id, attraction_id, name) values (%s, %s, %s)")
+        rows2=cursor.fetchall()
+        session['attraction_id'] = rows[0][0]
     cursor.close()
     return render_template('attractionpage.html', columns=column_names, rows=rows)
 
@@ -189,6 +198,7 @@ def attractions(attraction):
     return render_template('attraction.html', attraction=attraction,
                            columns=column_names, rows=rows)
 
+
 if __name__ == '__main__':
     dbname = 'team5_schema'
     db = pymysql.connect(host='localhost',
@@ -196,19 +206,16 @@ if __name__ == '__main__':
     app.run(debug=True)
     db.close()
 
-#Add attractions to trip
-class AddAttractionForm(Form):
-    submit = SubmitField('Add Attraction to Trip')
   
-@app.route('/attractionpage', methods=['GET', 'POST'])
-def AddAttraction():
-    form = AddAttractionForm()
-    cursor = db.cursor()
-    if form.validate_on_submit():
-        cursor.execute("insert into attraction (attraction_id, name, description, address_id, price, quantity) values (%s, %s, %s, %s, %s, %s)")
-        rows=cursor.fetchall()
-        session['attraction_id'] = rows[0][0]
-    return render_template('attractions.html', form=form)
+# @app.route('/attractionpage', methods=['GET', 'POST'])
+# def AddAttraction():
+#     form = AddAttractionForm()
+#     cursor = db.cursor()
+#     if form.validate_on_submit():
+#         cursor.execute("insert into trip (attraction_id, name, description, address_id, price, quantity) values (%s, %s, %s, %s, %s, %s)")
+#         rows=cursor.fetchall()
+#         session['attraction_id'] = rows[0][0]
+#     return render_template('attractions.html', form=form)
 
 
 
