@@ -86,7 +86,7 @@ def createtrip():
     cursor = db.cursor()
     if form.validate_on_submit(): 
         cursor.execute("insert into trip (city,startdate,booked,user_email) values (%s,%s,'No',%s)", (form.trip_city.data,form.trip_start_date.data, session['user_email']) )
-        cursor.execute("select trip_id from trip where city = %s and startdate = %s and user_email = %s", form.trip_city.data,form.trip_start_date.data,session['user_email']) )
+        cursor.execute("select trip_id from trip where city = %s and startdate = %s and user_email = %s", (form.trip_city.data,form.trip_start_date.data,session['user_email']) )
         rows = cursor.fetchall()
         session['trip_id']=rows[0][0]
         flash ('Success!')
