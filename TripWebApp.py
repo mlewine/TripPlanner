@@ -146,13 +146,21 @@ def attractionpage():
     cursor.close()
     return renter_template('attractionpage.html', columns=column_names, rows=rows)
 
-
 if __name__ == '__main__':
     dbname = 'team5_schema'
     db = pymysql.connect(host='localhost',
                          user='root', passwd='', db=dbname)
     app.run(debug=True)
     db.close()
+
+@app.route('/attractions')
+def contact():
+    if request.method == 'POST':
+        if request.form['submit'] == 'Add to trip':
+            cursor = db.cursor()
+            cursor.execute("insert into attraction (name, description, price) values (%s,%s,%s,%s,%s,%s,%s)", (session['attraction_id']))            
+    elif request.method == 'GET':
+        return render_template('contact.html', form=form)
 
 
 
