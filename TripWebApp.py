@@ -2,7 +2,7 @@ from collections import namedtuple
 from flask import Flask, render_template, session, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_wtf import Form
-from wtforms import StringField, SubmitField, BooleanField, validators, PasswordField
+from wtforms import StringField, SubmitField, BooleanField, validators, PasswordField, SelectField
 from wtforms.validators import Required
 import pymysql
 
@@ -35,14 +35,14 @@ class RegistrationForm(Form):
 
 #Create form to write a review
 class ReviewForm(Form):
-    attraction_review=StringField('Attraction Name', validators=[Required()])
+    attraction_review=SelectField(u'Attraction Name', choices=[('Metz Cathedral','Metz Cathedral'), ('Centre Pompidou-Metz','Centre Pompidou-Metz'), ('Museums of Metz','Museums of Metz'),('Eiffel Tower','Eiffel Tower'),('Louvre','Louvre'),('Notre Dame','Notre Dame'),('58 Tour Eiffel','58 Tour Eiffel'),('Brunch boat cruise','Brunch boat cruise'),('Colosseum','Colosseum'),('Pantheon','Pantheon'),('Trevi Fountain','Trevi Fountain')])
     title=StringField('Title of Review',validators=[Required()])
     review=StringField('Review', validators=[Required()])
     date=StringField('Date (yyyy-mm-dd)',validators=[Required()])
     submit = SubmitField('Submit')
 
 class CreateTripForm(Form):
-    trip_city=StringField('City',validators=[Required()])
+    trip_city=SelectField(u'City', choices=[('Metz','Metz'), ('Paris','Paris'), ('Rome','Rome')])
     trip_start_date = StringField('Date (yyyy-mm-dd)',validators=[Required()]) 
     submit = SubmitField('Submit')
 
