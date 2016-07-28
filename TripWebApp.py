@@ -79,7 +79,7 @@ def review():
 def createtrip():
     form = CreateTripForm()
     cursor = db.cursor()
-    if form.validate_on_submit: 
+    if form.validate_on_submit(): 
         cursor.execute("insert into trip (city,startdate,booked,user_email) values (%s,%s,'No',%s)", (form.trip_city.data,form.trip_start_date.data, session['user_email']) )
         flash ('Success!')
     return render_template('createtrip.html', form=form)
