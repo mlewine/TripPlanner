@@ -6,10 +6,6 @@
 
 
 <table>
-  <tr>
-    <th>Date</th>
-    <th>City</th>
-  </tr>
 	<ul>
 
 		<style type="text/css">
@@ -18,25 +14,41 @@ td
     padding:10px 20px 20px 0px;
 }
 </style>
+	<ul>
 	{% if rows %} 
 		{% for trip in rows %}
 			{% if trip[4] == session['user_email']%}
+				<table>
 				  <tr>
-
-				    <td>{{trip[2]}}</td>
-				    <td>{{trip[1]}}</td>
-						{% for activities in acts %}
-						      {% for cell in activities %}
-        							<td>{{cell}}</td>
-     			 				{% endfor %}
-						{% endfor %}
+				    <th>City: {{trip[1]}}</th>
+				    	<tr class="separator"/>
+				    <th>Date: {{trip[2]}}</th>
+				    	<tr class="separator"/>
+				    <th>Have you booked the trip? {{trip[3]}}!</th>
+				    	<tr class="separator"/>
 				  </tr>
+				</table>
 			{% endif %}
-			</tr>
+		{% endfor %}
+	{% endif %}
+	</ul>
+	<ul>
+	{% if activities %} 
+		{% for activity in activities %}
+				<table>
+				  <tr>
+				    <th>{{activity[3]}}</th>
+				    	<tr class="separator"/>
+				    <th>{{activity[2]}}</th>
+				    	<tr class="separator"/>
+				    <th>{{activity[4]}}</th>
+				    	<tr class="separator"/>
+				    <th>{{activity[5]}}</th>
+				    	<tr class="separator"/>
+				  </tr>
+				</table>
 		{% endfor %}
 	{% endif %}
 	</ul>
 	</table>
-    </tr>
-</table>
 {% endblock %}
