@@ -164,8 +164,10 @@ def trips():
     cursor = db.cursor()
     cursor.execute("select * from trip")
     trips = cursor.fetchall()
-    cursor.execute("select activity.reservationnumber, activity.name, activity.startdatetime, activity.enddatetime activity join trip using (trip_id) where trip_id = activity.trip_id")
+    cursor.execute("select activity.reservationnumber, activity.name, activity.startdatetime, activity.enddatetime from activity join trip using (trip_id) where trip_id = activity.trip_id")
     activities = cursor.fetchall()
+    for a in activities:
+        print (a)
     column_names = [desc[0] for desc in cursor.description]
     cursor.close()
     return render_template('trips.html', table=table,
