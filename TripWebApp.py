@@ -179,12 +179,6 @@ def attractionpage():
     cursor.execute("select name from attraction")
     rows = cursor.fetchall()
     column_names =[desc[0] for desc in cursor.description]
-    form = AddAttractionForm()
-    if form.validate_on_submit():
-        cursor.execute("insert into activity (activity_id, attraction_id, name) values (%s, %s, %s)")
-        rows2=cursor.fetchall()
-        session['attraction_id'] = rows[0][0]
-    cursor.close()
     return render_template('attractionpage.html', columns=column_names, rows=rows)
 
 # Lists attributes of a single attraction
@@ -194,10 +188,15 @@ def attractions(attraction):
     cursor.execute("select description, price, requires_reservation from attraction where name = '" + attraction + "'")
     rows = cursor.fetchall()
     column_names = [desc[0] for desc in cursor.description]
+    form = AddAttractionForm()
+    if form.validate_on_submit():
+        cursor.execute("insert into activity (activity_id, attraction_id, name) values (%s, %s, %s)")
+        rows2=cursor.fetchall()
+        session['attraction_id'] = rows[0][0]
+    cursor.close()
     cursor.close()
     return render_template('attraction.html', attraction=attraction,
                            columns=column_names, rows=rows)
-
 
 if __name__ == '__main__':
     dbname = 'team5_schema'
