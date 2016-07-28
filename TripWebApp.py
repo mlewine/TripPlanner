@@ -117,14 +117,15 @@ def browse():
     return render_template('attractions.html', table=table,
                            columns=column_names, rows=attractions)
 
-@app.route('/BrowseTrips')
-def browse_trips():
+@app.route('/trips')
+def trips():
     cursor = db.cursor()
-    cursor.execute("select city, date from trip")
+    cursor.execute("select city, startdate from trip")
     trips = cursor.fetchall()
     column_names = [desc[0] for desc in cursor.description]
     cursor.close()
-    return render_template('BrowseTrips.html', columns=column_names, rows=trips)
+    return render_template('BrowseTrips.html', table=table,
+        columns=column_names, rows=trips)
 
 @app.route('/table/<table>')
 def table(table):
