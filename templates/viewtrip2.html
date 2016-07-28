@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Viewing Trips{% endblock %}
+
+{% block content %}
+<h1>Your Trip</h1>
+
+
+<table>
+	<ul>
+
+		<style type="text/css">
+td
+{
+    padding:10px 20px 20px 0px;
+}
+</style>
+	<ul>
+	{% if rows %} 
+		{% for trip in rows %}
+			{% if trip[0] == session['tripid']%}
+				<table>
+				  <tr>
+				    <th>City: {{trip[1]}} </th>
+				    	<tr class="separator"/>
+				    <th>Date:{{trip[2]}} </th>
+				    	<tr class="separator"/>
+				    <th>Have you booked the trip? {{trip[3]}}!</th>
+				    	<tr class="separator"/>
+				  </tr>
+				</table>
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+	</ul>
+	<ul>
+	{% if vt %} 
+		{% for viewtrip in vt %}
+				<table>
+				  <tr>
+				    <th>Attraction:{{viewtrip[0]}}</th>
+				    	<tr class="separator"/>
+				    <th>Reservation Number:{{viewtrip[1]}}</th>
+				    	<tr class="separator"/>
+				    <th>Start Date and Time:{{viewtrip[2]}}</th>
+				    	<tr class="separator"/>
+				    <th>End Date and Time:{{viewtrip[3]}}</th>
+				    	<tr class="separator"/>
+				    	<br>
+				  </tr>
+				</table>
+		{% endfor %}
+	{% endif %}
+	</ul>
+	</table>
+{% endblock %}

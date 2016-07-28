@@ -41,11 +41,16 @@ class ReviewForm(Form):
     date=StringField('Date (yyyy-mm-dd)',validators=[Required()])
     submit = SubmitField('Submit')
 
-#Create a trip
+#Creates a form that allow's user to create a trip
 class CreateTripForm(Form):
     trip_city = SelectField(u'City', choices=[('Metz','Metz'), ('Paris','Paris'), ('Rome','Rome')],validators=[Required()])
     trip_start_date = StringField('Date (yyyy-mm-dd)',validators=[Required()]) 
     submit = SubmitField('Submit')
+
+class ViewTripForm(Form):
+    view_trip_city = SelectField(u'City of Trip', choices=[('Metz','Metz'), ('Paris','Paris'), ('Rome','Rome')],validators=[Required()])
+    view_trip_date= StringField('Start Date of Trip (yyyy-mm-dd)',validators=[Required()])
+    view_trip=SubmitField('View Trip')
 
 #Insert new user's information into the database    
 @app.route('/register', methods=['GET', 'POST'])
@@ -60,12 +65,6 @@ def register():
         cursor.execute("insert into credit_card values (%s, %s, %s, %s,%s)", (form.name_CC.data,form.ccnumber.data,form.card_expdate.data, form.cvv.data, session['address_id']) )
         cursor.execute("insert into user values (%s,%s, 0, 0, %s, %s)", (form.name.data, form.email.data, session['address_id'],form.password.data) )
         flash('Success!')
-    # if request.method == 'POST' and form.validate():
-    #     user = User()
-    #     user.name = form.name.data
-    #     user.email = form.email.data
-    #     user.save()
-    #     redirect('register')
     return render_template('register.html', form=form)
 
 #Insert review into database
@@ -95,6 +94,7 @@ def review():
         # If user had this attraction in their trip
     return render_template('review.html', form=form)
 
+#Allows user to create a trip
 @app.route('/createtrip', methods=['GET', 'POST'])
 def createtrip():
     form = CreateTripForm()
@@ -106,6 +106,35 @@ def createtrip():
         session['trip_id']=rows[0][0]
         flash ('Success!')
     return render_template('createtrip.html', form=form)
+
+@app.route('/viewtrip', methods=['GET', 'POST'])
+def viewtrip():
+    form = ViewTripForm()
+    cursor = db.cursor()
+    if form.validate_on_submit(): 
+        cursor.execute("select trip_id from trip where city = %s and startdate= %s and user_email = %s",(form.view_trip_city.data,form.view_trip_date.data,session['user_email']))
+        rows=cursor.fetchall()
+        if rows:
+            session['tripid'] = rows[0][0]
+            flash('Success!')
+            return redirect(url_for('viewtrip2'))
+        else:
+            flash('City and Start Date do not match')
+            return redirect(url_for('viewtrip'))
+
+    return render_template('viewtrip.html', form=form)
+
+@app.route('/viewtrip2', methods=['GET', 'POST'])
+def viewtrip2():
+    cursor=db.cursor()
+    cursor.execute("select * from trip")
+    trips = cursor.fetchall()
+    cursor.execute("select name, reservationnumber, startdatetime, enddatetime from activity where trip_id = %s", (session['tripid']))
+    viewtrip=cursor.fetchall()
+    column_names = [desc[0] for desc in cursor.description]
+    return render_template ('viewtrip2.html',table=table,
+        columns=column_names, rows=trips, vt= viewtrip)
+
 
 
 #Log into website or prevent logging in from wrong credentials
@@ -166,14 +195,12 @@ def trips():
     trips = cursor.fetchall()
     cursor.execute("select activity.reservationnumber, activity.name, activity.startdatetime, activity.enddatetime from activity join trip using (trip_id) where trip_id = activity.trip_id")
     activities = cursor.fetchall()
-    for a in activities:
-        print (a)
     column_names = [desc[0] for desc in cursor.description]
     cursor.close()
     return render_template('trips.html', table=table,
         columns=column_names, rows=trips, acts=activities)
 
-
+#Allows users to click on and view each table under "Explore DB"
 @app.route('/table/<table>')
 def table(table):
     cursor = db.cursor()
@@ -244,15 +271,5 @@ if __name__ == '__main__':
     db.close()
 
   
-# @app.route('/attractionpage', methods=['GET', 'POST'])
-# def AddAttraction():
-#     form = AddAttractionForm()
-#     cursor = db.cursor()
-#     if form.validate_on_submit():
-#         cursor.execute("insert into trip (attraction_id, name, description, address_id, price, quantity) values (%s, %s, %s, %s, %s, %s)")
-#         rows=cursor.fetchall()
-#         session['attraction_id'] = rows[0][0]
-#     return render_template('attractions.html', form=form)
-
 
 
