@@ -129,7 +129,7 @@ def viewtrip2():
     cursor=db.cursor()
     cursor.execute("select * from trip")
     trips = cursor.fetchall()
-    cursor.execute("select name, reservationnumber, startdatetime, enddatetime from activity where trip_id = %s", (session['tripid']))
+    cursor.execute("select attraction.name,activity.name, activity.reservationnumber, activity.startdatetime, activity.enddatetime from activity join attraction using (attraction_id) where trip_id = %s", (session['tripid']))
     viewtrip=cursor.fetchall()
     column_names = [desc[0] for desc in cursor.description]
     return render_template ('viewtrip2.html',table=table,
