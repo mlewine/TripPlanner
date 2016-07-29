@@ -40,11 +40,11 @@ SELECT * FROM trip WHERE user_email = "homer_simpson234@thisisfake.com";
 
 -- For an attraction that requires reservations and already has some reservations for a time slot, how many spots remain for that time slot?
 
-SELECT attraction.name, reservations.slot_id, (reservations.spots_remaining-attraction.quantity) AS spots_left FROM reservations JOIN attraction USING (attraction_id) WHERE attraction_id = 8 and reservations.slot_id = 4;
+SELECT attraction.name, reservations.slot_id, (reservations.spots_remaining-attraction.quantity) AS spots_left FROM reservations JOIN attraction USING (attraction_id) WHERE attraction_id = 8 and reservations.slot_id = 3;
 
 -- For one of the trips in the database that has two more more paid activities, what is the total cost of the trip?
 
-SELECT SUM(attraction.price) AS total_price, COUNT(attraction.price) AS paid_activities FROM trip JOIN activity USING (trip_id) JOIN attraction USING (attraction_id) WHERE trip_id = 3 GROUP BY (trip_id) HAVING COUNT(attraction.price) >= 2;
+SELECT SUM(attraction.price) AS total_price, COUNT(attraction.price) AS paid_activities FROM trip JOIN activity USING (trip_id) JOIN attraction USING (attraction_id) WHERE trip_id = 2 GROUP BY (trip_id) HAVING COUNT(attraction.price) >= 2;
 
  -- For one of the public transportation locations in your database, which attractions are nearest to that location (list it as the nearest public transportation)?
 
