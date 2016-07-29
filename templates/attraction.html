@@ -5,7 +5,7 @@
 
 {% block content %}
 <a href="/attractionpage">Back to attraction list</a>
-<h1>{{attraction}} Data</h1>
+<h1>{{attraction}}</h1>
 
 <style type="text/css">
 td
@@ -18,9 +18,10 @@ td
 
 <table>
   <tr>
-    {% for column in columns %}
-      <th>{{column}}</th>
-    {% endfor %}
+    <br>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Requires reservation</th>
   </tr>
   {% for row in rows %}
   

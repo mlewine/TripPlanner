@@ -231,7 +231,7 @@ def attractions(attraction):
     cursor.execute("select description, price, requires_reservation from attraction where name = '" + attraction + "'")
     rows = cursor.fetchall()
     column_names = [desc[0] for desc in cursor.description]
-    cursor.execute("select activity.name from activity join attraction using (attraction_id) where attraction.name = '" + attraction + "'")
+    cursor.execute("select distinct activity.name from activity join attraction using (attraction_id) where attraction.name = '" + attraction + "'")
     activitynames = cursor.fetchall()
     cursor.execute("select photo_url from attraction where name = '" + attraction + "'")
     url=cursor.fetchall()
@@ -253,8 +253,8 @@ class AddActivityForm(Form):
 def activity(activity):
     form = AddActivityForm()
     cursor = db.cursor()
-    cursor.execute("select * from activity where name = %s", (activity))
-    activity = cursor.fetchall()
+    cursor.execute("select distinct * from activity where name = %s", (activity))
+    activityy = cursor.fetchall()
     cursor.execute("select attraction.name from attraction join activity using (attraction_id) where activity.name = %s", (activity))
     attraction = cursor.fetchall()
     cursor.execute("select city from address join attraction using (address_id) where attraction.name = %s", (attraction[0][0]))
