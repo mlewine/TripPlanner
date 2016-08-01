@@ -1,5 +1,3 @@
 # TripPlanner
 
-Hi this is Matt
-joislohnson
-Seeing if this works
+Project for CS 4400 Databases at Georgia Tech.
