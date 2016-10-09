@@ -1,3 +1,3 @@
-# TripPlanner
+# Trip Planner
 
-Project for CS 4400 Databases at Georgia Tech.
+Allows students to plan trips in Europe. Done during study abroad Summer 16.
